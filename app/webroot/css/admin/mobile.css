@@ -1,0 +1,213 @@
+@media only screen and (max-width:767px) {
+.topnav {padding:0px 40px 0 10px; z-index:999; width:40px; top:20px; left:17%; display:inline-block; position:relative;}
+.topnav a.mobMenu {display:block; width:40px; height:25px; background:#fff; margin-top:-20px; margin-right:10px; border-radius:3px; padding:7px 0 0 0; z-index:99999;}
+.topnav a.mobMenu i {display:block; height:3px; background:#00a0b0; width:32px; margin:0 auto 5px auto;}
+.topnav ul {display:none; width:150px; background:#f7f7f7; position:absolute; left:6px; border-radius:0px 0 5px 5px; overflow:hidden; text-align:left;border:#ccc solid 1px;}
+.topnav ul li {margin:0; float:none; display:block; border-bottom:1px solid #ccc; z-index:99999; padding:0;}
+.topnav ul li a {float:none; color:#333333; margin:0; border-bottom:0; padding:10px;}
+.topnav ul li a span{ border-bottom:0;}
+.topnav li:after{content:'';}
+.topnav ul li a:hover span{ border-bottom:0;}
+.topnav ul li:last-child{ border-bottom:0;}
+.topnav ul li a:hover, .topnav ul li a:focus{color:#00a0b0; border:none; background:none;}
+/*-----Start of Inner Nav------------*/
+.about-topnav {padding:0px 40px 0 0px; z-index:999; width:40px; top:20px; left:17%; display:inline-block; position:relative;}
+.about-topnav a.mobMenu {display:block; width:40px; border:#fff solid 1px; height:25px; margin-top:-14px; margin-right:10px; padding:7px 0 2px 0; z-index:99999; position:absolute; background:#FFFFFF;}
+.about-topnav a.mobMenu.active{ border:#ccc solid 1px; border-bottom:0;}
+.about-topnav a.mobMenu i {display:block; height:3px; background:#333; width:32px; margin:0 auto 5px auto;}
+.about-topnav ul {display:none; width:150px; background:#fff; position:absolute; left:0px; overflow:hidden; text-align:left;border:#ccc solid 1px; top:20px;}
+.about-topnav ul li {margin:0; float:none; display:block; border-bottom:1px solid #ccc; z-index:99999; padding:0;}
+.about-topnav ul li a {float:none; color:#333333; margin:0; border-right:0; border-bottom:0; padding:10px;}
+.about-topnav ul li a span{ border-bottom:0;}
+.about-topnav li:after{content:'';}
+.about-topnav ul li a:hover span{ border-bottom:0;}
+.about-topnav ul li:last-child{ border-bottom:0;}
+.about-topnav ul li a:hover, .about-topnav ul li a:focus{color:#00a0b0; border:none; background:none;}
+.yotravlHd{ font-size:40px;}
+.yotravlHd span{ font-size:15px;}
+.bannerSearch{ background:none; box-shadow:none;}
+.banlocationInp{ width:49%; margin-bottom:10px; margin-right:10px;}
+.checkInInp{ width:30%; margin-bottom:10px; margin-right:10px;}
+.guestInp{ width:30%; margin-right:10px;}
+.searchBx{ float:none; vertical-align:top;}
+.searchBx a{ padding:0 46px;}
+.yotravl{ padding:80px 0 20px 0;}
+.footer-L img{ width:80%;}
+.footer-L{ width:25%;}
+.footer-R{ width:24.5%;}
+.exp-houseInner{ text-align:center;}
+.exp-houseInner span{ display:block;}
+.exp-houseInner small{ float:none; clear:both;}
+.pramoBanTxt{ font-size:36px;}
+.pramoBanTxt span{ font-size:16px;}
+.loginBox{ width:600px;}
+.likesbanner li{ height:300px;}
+.likeslideTxt{ height:300px;}
+.PromobanMain ul li{ height:300px;}
+.pramoBanTxt{ height:300px;}
+.videoCon {height:300px;}
+.footer-L{ width:40%; margin-bottom:10px;}
+.footer-R{width:40%; margin-bottom:10px;}
+.guestList ul li{ width:49%; margin-bottom:10px;}
+.guestList ul li:nth-child(2n){ margin-right:0;}
+.guestcount span{ font-size:22px;}
+.browseTop-Left{ width:50%;}
+.browhowitList ul li a{font-size:14px;}
+.footerfollow ul li{ width:16%;}
+.contfld-L{ width:30%;}
+.contfld-R{ width:67%;}
+.inpTxt{ font-size:14px;}
+.locationTxt{ font-size:16px;}
+.contHd{ font-size:20px;}
+.submitresetBtn a{ width:100px;}
+.termsNav ul li a{ padding:15px 4px;}
+.howitBg{ display:none !important;}
+.howitBtn{ display:none !important;}
+.about-home-icon{ margin-right:0;}
+.searchListmap{ display:none;}
+.searchListright{ width:100%; display:block; float:none;}
+.morefilterBx{ width:100% !important;}
+.srchlist-img{ height:245px;}
+
+}
+@media only screen and (min-width:640px) {
+.termsNav > ul{ display:block !important;}
+}
+@media only screen and (max-width:639px) {
+.popcitiesList ul li{ width:100%; margin-right:0;}
+.popcitiList-L{ width:100%; margin-bottom:15px;}
+.popcitiList-R{ display:block; width:100%; float:none;}
+.footer-L{ width:49%;}
+.footer-R{ width:49%; margin-bottom:20px;}
+.banlocationInp{ width:45%;}
+.checkInInp{ width:26%;}
+.guestInp{ width:25%}
+.searchBx a{ padding:0 33px;}
+.exp-houseList ul li{ display:block; width:100%; margin-right:0; margin-bottom:15px;}
+.exp-houseInner span{ display:inline-block;}
+.exp-houseInner small{ float:right; clear:both;}
+.exp-houseInner{ text-align:left;}
+.pramoBanTxt{ font-size:28px;}
+.pramoBanTxt span{ font-family: 'Ubuntu';}
+.mainBannerBx .bx-controls-direction .bx-next{ right:2%;}
+.mainBannerBx .bx-controls-direction .bx-prev{ left:2%;}
+.likesbanner .bx-controls-direction .bx-next{ right:2%;}
+.likesbanner .bx-controls-direction .bx-prev{ left:2%;}
+.loginBox{ width:450px;}
+.mapTxt span{ font-size:42px; line-height:50px;}
+.mapTxt{ font-size:18px; line-height:24px; margin-top:-55px;}
+.aboutHd{ font-size:24px;}
+.bannerSearch{ margin:35px 0 0 0;}
+.Cont-Left{ width:100%; display:block;}
+.Cont-Right{ display:block; width:100%; float:none; margin:30px 0;}
+.inpTxt{ font-size:16px;}
+
+.termsNav { z-index:9; width:100%; top:0; left:0; display:inline-block; position:relative;}
+.termsNav a.termmobmenu {display:block; width:100%; margin-top:10px; border:#ccc solid 1px; line-height:16px; padding:7px 0px 7px 0px; margin-right:0; z-index:9; box-sizing:border-box;}
+.termsNav a.termmobmenu small{ display:inline-block; float:right;}
+.termsNav a.termmobmenu small img{ margin-right:5px;}
+.termsNav ul {display:none; width:100%; position:relative; left:0; background:#f7f7f7; border:#ccc solid 1px; padding:5px; overflow:hidden; text-align:left; box-sizing:border-box; top:0px;}
+.termsNav ul li {margin:0; float:none; display:block; border-bottom:1px solid #e7e7e7; z-index:99999; padding:0;}
+.termsNav ul li a {float:none; color:#333; margin:0; border-bottom:0; padding:10px 0; font-size:14px;}
+.termsNav ul li a span{ border-bottom:0;}
+.termsNav li:after{content:'';}
+.termsNav ul li a:hover span{ border-bottom:0;}
+.termsNav ul li:last-child{ border-bottom:0;}
+.termsNav ul li a:hover,.termsNav ul li a.active, .termsNav ul li a:focus{color:#00a0b0; border:none; background:none;}
+.menmobTxt{ display:inline-block; color:#333; padding-left:5px;}
+.termsNavBg{ background:none;}
+.about-home-icon a{ margin-right:0px;}
+.contHd{ padding-left:6px; padding-right:6px;}
+.termtopTxt{ padding-left:6px; padding-right:6px;}
+.trmsserHd{ padding-left:6px; padding-right:6px;}
+.termserTxt{ padding-left:6px; padding-right:6px;}
+.srchlist-img{ height:200px;}
+.bedrooms-L{ width:100%; display:block; margin-bottom:18px;}
+.bedrooms-R{ width:100%; display:block;}
+.filtermain{ padding:0 10px 20px 10px;}
+.roomsMain{ margin-left:10px; margin-right:10px;}
+.animitiesBx{ margin:0 10px;}
+.keywordsMain{ margin:10px;}
+.showListing{ margin:0 10px;}
+}
+
+@media only screen and (max-width:479px) {
+.logo{ display:block; text-align:center;}
+.header-top{ padding:10px 0 10px 0; height:120px;}
+.topNavBx{ display:block; float:none;}
+.topnav{ left:0;}
+.langBx{ float:right; width:112px;}
+.home-icon{ width:42px;}
+.home-iconDet{ right:3px;}
+.about-topNavBx{ display:block; float:none;}
+.about-topnav{ left:0;}
+.about-langBx{ float:right; width:112px;}
+.about-home-icon{ width:42px;}
+.about-home-iconDet{ right:3px;}
+.yotravl{ padding:10px 0 0 0;}
+.bannerSearch{ margin:30px auto;}
+.banlocationInp{ width:100%; margin-right:0; box-sizing:border-box; height:40px; margin-bottom:5px;}
+.checkInInp{ width:100%; margin-right:0; box-sizing:border-box; height:40px; margin-bottom:5px;}
+.guestInp{ width:100%; margin-right:0; box-sizing:border-box; height:40px; margin-bottom:5px;}
+.select-wrapper, .select-wrapper select{ height:40px; line-height:40px;}
+.searchBx{ display:block;}
+.searchBx a{ display:block; padding:5px 0; text-align:center; line-height:30px;}
+.yotravlHd{ font-size:32px;}
+.yotravlHd a{ padding:8px 20px;}
+.bannerSearch{ margin:52px auto 0 auto;}
+.expolrecitiesHd{ font-size:22px;}
+.expolrecitiesHd span{ font-size:15px;}
+.likeslideTxt span{ font-size:32px;}
+.likeslideTxt{ font-size:22px; height:180px;}
+.likesbanner li {height:180px;}
+.footer-L{ width:100%; display:block;}
+.footer-R{ width:100%; display:block;}
+.footer-L span{ padding-top:5px; padding-bottom:20px;}
+.footer-L img{ width:auto;}
+.loginBox{ width:300px;}
+.loginInner video{ height:170px;}
+.loginBox{ top:50%; margin-top:-85px;}
+.videoCon {height:180px;}
+.guestList ul li{ width:100%; margin-right:0;}
+.searchfld{ width:70%;}
+.searchBtnBx{ width:30%;}
+.sercTxt{ font-size:14px; line-height:18px;}
+.artDet{ padding:10px 10px 10px 40px;}
+.artHd{ font-size:16px;font-family: 'Ubuntu-Bold';}
+.browseTop-Left{ width:100%;}
+.footerfollow ul li{ width:13%;}
+.contfld-L{ width:100%; display:block;}
+.contfld-R{ width:100%; display:block;}
+.inpTxt{ font-size:16px; line-height:28px;}
+.contfldfull{ margin-bottom:10px;}
+.submitresetBtn{ margin-top:-15px;}
+.trmsserHd{ font-size:18px; line-height:22px;}
+.termtopTxt{ font-size:13px;}
+.roomtype-R{ width:100%; margin-left:0; margin-bottom:10px;}
+.countryInp{ width:100%; display:block; border-radius:0;}
+.filtermain{ padding:0 10px;}
+.calndrInp{ width:50%; border-left:#c4c4c4 solid 1px; border-right:0;}
+.calndrInp2{ width:50%;}
+.personInp{ width:30%; border-left:#c4c4c4 solid 1px;}
+.filtsrchBtn{ width:70%;}
+.priceRangeBx-L{ width:100%; display:block; padding-bottom:10px; text-align:center;}
+.priceRangeBx-R{ width:100%; text-align:center;}
+.listingBg ul li{ width:100%; display:block;}
+.listingBg ul li:nth-child(2n){ float:none;}
+.srchlist-img{ height:250px;}
+.pager ul li{ display:inline-block; width:auto; }
+.amini-Left{ width:100%; display:block; padding:5px 0;}
+.modify-calndrInp{ width:100%; display:block;}
+.modify-calndrInp2{ width:100%; display:block; float:none;}
+.modify-personInp{ display:block; width:100%;}
+.modify-filtsrchBtn{ display:block; float:none; width:100%;}
+.priceRangeBx{ margin-bottom:30px;}
+/*check out page css*/
+.cvvNo span{ font-size:12px;}
+.cvvNo{ width:25%;}
+.expDate{ width:73%;}
+.cardType{ width:130px;}
+
+
+
+}

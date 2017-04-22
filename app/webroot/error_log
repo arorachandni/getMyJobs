@@ -1,0 +1,17 @@
+[16-Jul-2014 01:03:42 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/app/webroot/SQLyogTunnel.php on line 1518
+[29-Jul-2014 07:36:54 America/Chicago] PHP Notice:  Undefined index: Error in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Core/Configure.php on line 102
+[29-Jul-2014 07:36:54 America/Chicago] PHP Notice:  Undefined index: Exception in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Core/Configure.php on line 103
+[29-Jul-2014 07:36:54 America/Chicago] PHP Notice:  Undefined index: cookie in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 491
+[29-Jul-2014 07:36:54 America/Chicago] PHP Notice:  Undefined index: timeout in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 499
+[29-Jul-2014 07:36:54 America/Chicago] PHP Notice:  Undefined index: timeout in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 529
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: Error in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Core/Configure.php on line 102
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: Exception in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Core/Configure.php on line 103
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: cookie in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 491
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: timeout in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 499
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: timeout in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 529
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: cookie in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 491
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: timeout in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 529
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: cookie in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 491
+[02-Aug-2014 03:28:57 America/Chicago] PHP Notice:  Undefined index: timeout in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/lib/Cake/Model/Datasource/CakeSession.php on line 529
+[02-Aug-2014 03:38:22 America/Chicago] PHP Parse error:  syntax error, unexpected $end in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/app/Controller/CustomsController.php on line 75
+[08-Aug-2014 05:26:04 America/Chicago] PHP Parse error:  syntax error, unexpected $end in /home/flxsnorg/public_html/lab/absoluteglobal/absoluteglobal/app/Controller/PackagesController.php on line 135

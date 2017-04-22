@@ -1,0 +1,4374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.escapia.com/EVRN/2007/02" targetNamespace="http://www.escapia.com/EVRN/2007/02" elementFormDefault="qualified">
+	<xs:element name="EVRN_UnitDescriptiveInfoRQ">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRQType">
+					<xs:sequence>
+						<xs:element name="UnitDescriptiveInfos" type="tns:ArrayOfUnitDescriptiveInfoRequestType" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="SummaryOnly" type="xs:boolean" default="false"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EVRN_BaseRQType">
+		<xs:sequence>
+			<xs:element name="POS" type="tns:ArrayOfSourceType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="EchoToken" type="xs:string"/>
+		<xs:attribute name="TimeStamp" type="xs:dateTime"/>
+		<xs:attribute name="Target" default="Production">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Test"/>
+					<xs:enumeration value="Production"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Version" type="xs:decimal" use="required"/>
+		<xs:attribute name="TransactionIdentifier" type="xs:string"/>
+		<xs:attribute name="SequenceNmbr" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="TransactionStatusCode">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Start"/>
+					<xs:enumeration value="End"/>
+					<xs:enumeration value="Rollback"/>
+					<xs:enumeration value="InSeries"/>
+					<xs:enumeration value="Continuation"/>
+					<xs:enumeration value="Subsequent"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="RetransmissionIndicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfSourceType">
+		<xs:sequence>
+			<xs:element name="Source" type="tns:SourceType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SourceType">
+		<xs:sequence>
+			<xs:element name="RequestorID" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="ID" type="xs:string"/>
+					<xs:attribute name="MessagePassword" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BookingChannel" type="tns:BookingChannelType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BookingChannelType">
+		<xs:sequence>
+			<xs:element name="CompanyName" type="tns:CompanyNameType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+		<xs:attribute name="Primary" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="CompanyNameType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="CompanyShortName" type="xs:string"/>
+				<xs:attribute name="TravelSector" type="xs:string"/>
+				<xs:attribute name="Code" type="xs:string"/>
+				<xs:attribute name="CodeContext" type="xs:string"/>
+				<xs:attribute name="Division" type="xs:string"/>
+				<xs:attribute name="Department" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TravelArrangerType">
+		<xs:simpleContent>
+			<xs:extension base="tns:CompanyNameType">
+				<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+				<xs:attribute name="ShareSynchInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="ShareMarketInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="TravelArrangerType" type="xs:string"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CompanyNamePrefType">
+		<xs:simpleContent>
+			<xs:extension base="tns:CompanyNameType">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PreferLevelType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Only"/>
+			<xs:enumeration value="Unacceptable"/>
+			<xs:enumeration value="Preferred"/>
+			<xs:enumeration value="Required"/>
+			<xs:enumeration value="NoPreference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="UnitResRequestType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:EVRN_BaseRQType">
+				<xs:sequence>
+					<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="UnitReservations" type="tns:UnitReservationsType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="ResStatus" type="tns:TransactionActionType"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UniqueID_Type">
+		<xs:sequence>
+			<xs:element name="CompanyName" type="tns:CompanyNameType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="URL" type="xs:anyURI"/>
+		<xs:attribute name="Type" type="xs:string"/>
+		<xs:attribute name="Instance" type="xs:string"/>
+		<xs:attribute name="ID" type="xs:string"/>
+		<xs:attribute name="ID_Context" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="UnitReservationsType">
+		<xs:sequence>
+			<xs:element name="UnitReservation" type="tns:UnitReservationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RoutingHops" type="tns:ArrayOfRoutingHopTypeRoutingHop" minOccurs="0"/>
+			<xs:element name="WrittenConfInst" type="tns:WrittenConfInstType" minOccurs="0"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitReservationType">
+		<xs:sequence>
+			<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+			<xs:element name="UnitStays" type="tns:ArrayOfUnitStaysTypeUnitStay" minOccurs="0"/>
+			<xs:element name="Services" type="tns:ArrayOfServicesTypeService" minOccurs="0"/>
+			<xs:element name="ResGuests" type="tns:ArrayOfResGuestsTypeResGuest" minOccurs="0"/>
+			<xs:element name="ResGlobalInfo" type="tns:EVRN_ResGlobalInfoType" minOccurs="0"/>
+			<xs:element name="WrittenConfInst" type="tns:WrittenConfInstType" minOccurs="0"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="RoomStayReservation" type="xs:boolean"/>
+		<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+		<xs:attribute name="CreatorID" type="xs:string"/>
+		<xs:attribute name="LastModifyDateTime" type="xs:dateTime"/>
+		<xs:attribute name="LastModifierID" type="xs:string"/>
+		<xs:attribute name="ResStatus" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfUnitStaysTypeUnitStay">
+		<xs:sequence>
+			<xs:element name="UnitStay" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:UnitStayType">
+							<xs:sequence>
+								<xs:element name="ResGuestRPHs" type="tns:ArrayOfResGuestRPHsTypeResGuestRPH" minOccurs="0"/>
+								<xs:element name="Comments" type="tns:ArrayOfCommentTypeComment" minOccurs="0"/>
+								<xs:element name="SpecialRequests" type="tns:ArrayOfSpecialRequestTypeSpecialRequest" minOccurs="0"/>
+								<xs:element name="ServiceRPHs" type="tns:ArrayOfServiceRPHsTypeServiceRPH" minOccurs="0"/>
+								<xs:element name="Reference" minOccurs="0">
+									<xs:complexType mixed="false">
+										<xs:complexContent mixed="false">
+											<xs:extension base="tns:UniqueID_Type">
+												<xs:attribute name="DateTime" type="xs:dateTime"/>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="IndexNumber" type="xs:integer"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitStayType">
+		<xs:sequence>
+			<xs:element name="UnitRates" type="tns:ArrayOfUnitStayTypeUnitRate" minOccurs="0"/>
+			<xs:element name="GuestCounts" type="tns:GuestCountType" minOccurs="0"/>
+			<xs:element name="TimeSpan" type="tns:DateTimeSpanType" minOccurs="0"/>
+			<xs:element name="DepositPayments" type="tns:ArrayOfRequiredPaymentsTypeGuaranteePayment" minOccurs="0"/>
+			<xs:element name="CancelPenalties" type="tns:CancelPenaltiesType" minOccurs="0"/>
+			<xs:element name="Total" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="BasicUnitInfo" type="tns:BasicUnitInfoType" minOccurs="0"/>
+			<xs:element name="RentalAgreement" type="tns:ArrayOfParagraphType" minOccurs="0"/>
+			<xs:element name="Pets" type="tns:PetsPoliciesType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfUnitStayTypeUnitRate">
+		<xs:sequence>
+			<xs:element name="UnitRate" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Rates" type="tns:ArrayOfEVRN_AmountType" minOccurs="0"/>
+						<xs:element name="UnitRateDescription" type="tns:ParagraphType" minOccurs="0"/>
+						<xs:element name="Total" type="tns:TotalType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfEVRN_AmountType">
+		<xs:sequence>
+			<xs:element name="Rate" type="tns:EVRN_AmountType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EVRN_AmountType">
+		<xs:sequence>
+			<xs:element name="Base" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="AdditionalGuestAmounts" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AdditionalGuestAmount" type="tns:AdditionalGuestAmountType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="AmountBeforeTax" type="xs:decimal"/>
+					<xs:attribute name="AmountAfterTax" type="xs:decimal"/>
+					<xs:attribute name="CurrencyCode" type="xs:string"/>
+					<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Fees" type="tns:ArrayOfFeeType" minOccurs="0"/>
+			<xs:element name="CancelPolicies" type="tns:CancelPenaltiesType" minOccurs="0"/>
+			<xs:element name="PaymentPolicies" type="tns:ArrayOfRequiredPaymentsTypeGuaranteePayment" minOccurs="0"/>
+			<xs:element name="Discount" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:DiscountType">
+							<xs:attribute name="AppliesTo">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Base"/>
+										<xs:enumeration value="AdditionalGuestAmount"/>
+										<xs:enumeration value="Fee"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="ItemRPH" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Total" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="RateDescription" type="tns:ParagraphType" minOccurs="0"/>
+			<xs:element name="AdditionalCharges" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AdditionalCharge" type="tns:AdditionalChargeType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="AmountBeforeTax" type="xs:decimal"/>
+					<xs:attribute name="AmountAfterTax" type="xs:decimal"/>
+					<xs:attribute name="CurrencyCode" type="xs:string"/>
+					<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdvanceBookingRestriction" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Start" type="xs:string"/>
+					<xs:attribute name="Duration" type="xs:string"/>
+					<xs:attribute name="End" type="xs:string"/>
+					<xs:attribute name="MinAdvanceBookingOffset" type="xs:duration"/>
+					<xs:attribute name="MaxAdvanceBookingOffset" type="xs:duration"/>
+					<xs:attribute name="Mon" type="xs:boolean"/>
+					<xs:attribute name="Tue" type="xs:boolean"/>
+					<xs:attribute name="Weds" type="xs:boolean"/>
+					<xs:attribute name="Thur" type="xs:boolean"/>
+					<xs:attribute name="Fri" type="xs:boolean"/>
+					<xs:attribute name="Sat" type="xs:boolean"/>
+					<xs:attribute name="Sun" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="AgeQualifyingCode" type="xs:string"/>
+		<xs:attribute name="MinAge" type="xs:integer"/>
+		<xs:attribute name="MaxAge" type="xs:integer"/>
+		<xs:attribute name="AgeTimeUnit" type="tns:TimeUnitType"/>
+		<xs:attribute name="GuaranteedInd" type="xs:boolean"/>
+		<xs:attribute name="NumberOfUnits" type="xs:integer"/>
+		<xs:attribute name="RateTimeUnit" type="tns:TimeUnitType"/>
+		<xs:attribute name="UnitMultiplier" type="xs:positiveInteger"/>
+		<xs:attribute name="MinGuestApplicable" type="xs:positiveInteger"/>
+		<xs:attribute name="MaxGuestApplicable" type="xs:positiveInteger"/>
+		<xs:attribute name="MinLOS" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="MaxLOS" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="StayOverDate" type="tns:DayOfWeekType"/>
+		<xs:attribute name="AlternateCurrencyInd" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="TotalType">
+		<xs:sequence>
+			<xs:element name="Taxes" type="tns:TaxesType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="AmountBeforeTax" type="xs:decimal"/>
+		<xs:attribute name="AmountAfterTax" type="xs:decimal"/>
+		<xs:attribute name="CurrencyCode" type="xs:string"/>
+		<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="AdditionalFeesExcludedIndicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="TaxesType">
+		<xs:sequence>
+			<xs:element name="Tax" type="tns:TaxType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Amount" type="xs:decimal"/>
+	</xs:complexType>
+	<xs:complexType name="TaxType">
+		<xs:sequence>
+			<xs:element name="TaxDescription" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="tns:AmountDeterminationType"/>
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Percent" type="xs:decimal"/>
+		<xs:attribute name="Amount" type="xs:decimal"/>
+		<xs:attribute name="CurrencyCode" type="xs:string"/>
+		<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="ChargeUnit" type="xs:string"/>
+		<xs:attribute name="ChargeFrequency" type="xs:string"/>
+		<xs:attribute name="ChargeUnitExempt" type="xs:positiveInteger"/>
+		<xs:attribute name="ChargeFrequencyExempt" type="xs:positiveInteger"/>
+		<xs:attribute name="MaxChargeUnitApplies" type="xs:positiveInteger"/>
+		<xs:attribute name="MaxChargeFrequencyApplies" type="xs:positiveInteger"/>
+	</xs:complexType>
+	<xs:complexType name="ParagraphType">
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Image" type="xs:string" minOccurs="0"/>
+				<xs:element name="URL" type="xs:anyURI" minOccurs="0"/>
+				<xs:element name="ListItem" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="tns:FormattedTextTextType">
+								<xs:attribute name="ListItem" type="xs:integer"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Text" type="tns:FormattedTextTextType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string"/>
+		<xs:attribute name="ParagraphNumber" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+		<xs:attribute name="CreatorID" type="xs:string"/>
+		<xs:attribute name="LastModifyDateTime" type="xs:dateTime"/>
+		<xs:attribute name="LastModifierID" type="xs:string"/>
+		<xs:attribute name="Language" type="xs:language"/>
+	</xs:complexType>
+	<xs:complexType name="FormattedTextTextType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Formatted" type="xs:boolean"/>
+				<xs:attribute name="Language" type="xs:language"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AmountDeterminationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Inclusive"/>
+			<xs:enumeration value="Exclusive"/>
+			<xs:enumeration value="Cumulative"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DiscountType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:TotalType">
+				<xs:sequence>
+					<xs:element name="DiscountReason" type="tns:ParagraphType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="TaxInclusive" type="xs:boolean"/>
+				<xs:attribute name="Percent" type="xs:decimal"/>
+				<xs:attribute name="DiscountCode" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RateDiscountType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:DiscountType">
+				<xs:attribute name="MinAdvanceBookingOffset" type="xs:duration"/>
+				<xs:attribute name="MaxAdvanceBookingOffset" type="xs:duration"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AdditionalGuestAmountType">
+		<xs:sequence>
+			<xs:element name="Amount" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="AddlGuestAmtDescription" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="MaxAdditionalGuests" type="xs:integer"/>
+		<xs:attribute name="AgeQualifyingCode" type="xs:string"/>
+		<xs:attribute name="MinAge" type="xs:integer"/>
+		<xs:attribute name="MaxAge" type="xs:integer"/>
+		<xs:attribute name="AgeTimeUnit" type="tns:TimeUnitType"/>
+		<xs:attribute name="Type" type="xs:string"/>
+		<xs:attribute name="Percent" type="xs:decimal"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+	</xs:complexType>
+	<xs:simpleType name="TimeUnitType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Year"/>
+			<xs:enumeration value="Month"/>
+			<xs:enumeration value="Week"/>
+			<xs:enumeration value="Day"/>
+			<xs:enumeration value="Hour"/>
+			<xs:enumeration value="Second"/>
+			<xs:enumeration value="FullDuration"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ArrayOfFeeType">
+		<xs:sequence>
+			<xs:element name="Fee" type="tns:FeeType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FeeType">
+		<xs:sequence>
+			<xs:element name="Taxes" type="tns:TaxesType" minOccurs="0"/>
+			<xs:element name="Description" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="TaxInclusive" type="xs:boolean"/>
+		<xs:attribute name="Type" type="tns:AmountDeterminationType"/>
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Percent" type="xs:decimal"/>
+		<xs:attribute name="Amount" type="xs:decimal"/>
+		<xs:attribute name="CurrencyCode" type="xs:string"/>
+		<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="MandatoryIndicator" type="xs:boolean"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+		<xs:attribute name="ChargeUnit" type="xs:string"/>
+		<xs:attribute name="ChargeFrequency" type="xs:string"/>
+		<xs:attribute name="ChargeUnitExempt" type="xs:positiveInteger"/>
+		<xs:attribute name="ChargeFrequencyExempt" type="xs:positiveInteger"/>
+		<xs:attribute name="MaxChargeUnitApplies" type="xs:positiveInteger"/>
+		<xs:attribute name="MaxChargeFrequencyApplies" type="xs:positiveInteger"/>
+		<xs:attribute name="TaxableIndicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="CommissionPolicyType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:FeeType">
+				<xs:attribute name="MinAdvanceBookingOffset" type="xs:duration"/>
+				<xs:attribute name="MaxAdvanceBookingOffset" type="xs:duration"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CancelPenaltiesType">
+		<xs:sequence>
+			<xs:element name="CancelPenalty" type="tns:CancelPenaltyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="CancelPolicyIndicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="CancelPenaltyType">
+		<xs:sequence>
+			<xs:element name="Deadline" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="AbsoluteDeadline" type="xs:string"/>
+					<xs:attribute name="OffsetTimeUnit" type="tns:TimeUnitType"/>
+					<xs:attribute name="OffsetUnitMultiplier" type="xs:integer"/>
+					<xs:attribute name="OffsetDropTime">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="BeforeArrival"/>
+								<xs:enumeration value="AfterBooking"/>
+								<xs:enumeration value="AfterConfirmation"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AmountPercent" type="tns:AmountPercentType" minOccurs="0"/>
+			<xs:element name="PenaltyDescription" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ConfirmClassCode" type="xs:string"/>
+		<xs:attribute name="PolicyCode" type="xs:string"/>
+		<xs:attribute name="NonRefundable" type="xs:boolean"/>
+		<xs:attribute name="Mon" type="xs:boolean"/>
+		<xs:attribute name="Tue" type="xs:boolean"/>
+		<xs:attribute name="Weds" type="xs:boolean"/>
+		<xs:attribute name="Thur" type="xs:boolean"/>
+		<xs:attribute name="Fri" type="xs:boolean"/>
+		<xs:attribute name="Sat" type="xs:boolean"/>
+		<xs:attribute name="Sun" type="xs:boolean"/>
+		<xs:attribute name="Start" type="xs:string"/>
+		<xs:attribute name="Duration" type="xs:string"/>
+		<xs:attribute name="End" type="xs:string"/>
+		<xs:attribute name="RoomTypeCode" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="AmountPercentType">
+		<xs:sequence>
+			<xs:element name="Taxes" type="tns:TaxesType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="TaxInclusive" type="xs:boolean"/>
+		<xs:attribute name="FeesInclusive" type="xs:boolean"/>
+		<xs:attribute name="NmbrOfNights" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="BasisType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="FullStay"/>
+					<xs:enumeration value="Nights"/>
+					<xs:enumeration value="FirstLast"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Percent" type="xs:decimal"/>
+		<xs:attribute name="Amount" type="xs:decimal"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfRequiredPaymentsTypeGuaranteePayment">
+		<xs:sequence>
+			<xs:element name="GuaranteePayment" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AcceptedPayments" type="tns:ArrayOfPaymentFormType" minOccurs="0"/>
+						<xs:element name="AmountPercent" type="tns:AmountPercentType" minOccurs="0"/>
+						<xs:element name="Deadline" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="AbsoluteDeadline" type="xs:string"/>
+								<xs:attribute name="OffsetTimeUnit" type="tns:TimeUnitType"/>
+								<xs:attribute name="OffsetUnitMultiplier" type="xs:integer"/>
+								<xs:attribute name="OffsetDropTime">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="BeforeArrival"/>
+											<xs:enumeration value="AfterBooking"/>
+											<xs:enumeration value="AfterConfirmation"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Description" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType mixed="false">
+								<xs:complexContent mixed="false">
+									<xs:extension base="tns:AddressInfoType">
+										<xs:attribute name="AddresseeName" type="xs:string"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="RetributionType">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="ResAutoCancelled"/>
+								<xs:enumeration value="ResNotGuaranteed"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="PaymentCode" type="xs:string"/>
+					<xs:attribute name="Type">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="RequiredPayment"/>
+								<xs:enumeration value="GuaranteePolicy"/>
+								<xs:enumeration value="AcceptedPaymentForms"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="GuaranteeCode" type="xs:string"/>
+					<xs:attribute name="GuaranteeType">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="GuaranteeRequired"/>
+								<xs:enumeration value="None"/>
+								<xs:enumeration value="CC/DC/Voucher"/>
+								<xs:enumeration value="Profile"/>
+								<xs:enumeration value="Deposit"/>
+								<xs:enumeration value="PrePay"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="HoldTime" type="xs:time"/>
+					<xs:attribute name="Mon" type="xs:boolean"/>
+					<xs:attribute name="Tue" type="xs:boolean"/>
+					<xs:attribute name="Weds" type="xs:boolean"/>
+					<xs:attribute name="Thur" type="xs:boolean"/>
+					<xs:attribute name="Fri" type="xs:boolean"/>
+					<xs:attribute name="Sat" type="xs:boolean"/>
+					<xs:attribute name="Sun" type="xs:boolean"/>
+					<xs:attribute name="Start" type="xs:string"/>
+					<xs:attribute name="Duration" type="xs:string"/>
+					<xs:attribute name="End" type="xs:string"/>
+					<xs:attribute name="NoCardHolderInfoReqInd" type="xs:boolean"/>
+					<xs:attribute name="NameInd" type="xs:boolean"/>
+					<xs:attribute name="AddressInd" type="xs:boolean"/>
+					<xs:attribute name="PhoneInd" type="xs:boolean"/>
+					<xs:attribute name="InterbankNbrInd" type="xs:boolean"/>
+					<xs:attribute name="RoomTypeCode" type="xs:string"/>
+					<xs:attribute name="InfoSource" type="xs:string"/>
+					<xs:attribute name="NonRefundableIndicator" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfPaymentFormType">
+		<xs:sequence>
+			<xs:element name="AcceptedPayment" type="tns:PaymentFormType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentFormType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Cash" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="CashIndicator" type="xs:boolean" default="true"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Voucher" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="SeriesCode" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BankAcct" type="tns:BankAcctType" minOccurs="0"/>
+				<xs:element name="DirectBill" type="tns:DirectBillType" minOccurs="0"/>
+				<xs:element name="LoyaltyRedemption" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="CertificateNumber" type="xs:string"/>
+						<xs:attribute name="MemberNumber" type="xs:string"/>
+						<xs:attribute name="ProgramName" type="xs:string"/>
+						<xs:attribute name="PromotionCode" type="xs:string"/>
+						<xs:attribute name="PromotionVendorCode">
+							<xs:simpleType>
+								<xs:list itemType="xs:string"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="RedemptionQuantity" type="xs:positiveInteger"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MiscChargeOrder" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="TicketNumber" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PaymentCard" type="tns:PaymentCardType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CostCenterID" type="xs:string"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+		<xs:attribute name="PaymentTransactionTypeCode">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="charge"/>
+					<xs:enumeration value="reserve"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BankAcctType">
+		<xs:sequence>
+			<xs:element name="BankAcctName" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="BankID" type="xs:string"/>
+		<xs:attribute name="AcctType" type="xs:string"/>
+		<xs:attribute name="BankAcctNumber" type="xs:string"/>
+		<xs:attribute name="ChecksAcceptedInd" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="DirectBillType">
+		<xs:sequence>
+			<xs:element name="CompanyName" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:CompanyNameType">
+							<xs:attribute name="ContactName" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address" type="tns:AddressInfoType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="DirectBill_ID" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="AddressInfoType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:AddressType">
+				<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+				<xs:attribute name="UseType" type="xs:string"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="StreetNmbr" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:StreetNmbrType">
+							<xs:attribute name="StreetNmbrSuffix" type="xs:string"/>
+							<xs:attribute name="StreetDirection" type="xs:string"/>
+							<xs:attribute name="RuralRouteNmbr" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BldgRoom" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="BldgNameIndicator" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddressLine" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CityName" type="xs:string" minOccurs="0"/>
+			<xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="County" type="xs:string" minOccurs="0"/>
+			<xs:element name="StateProv" type="tns:StateProvType" minOccurs="0"/>
+			<xs:element name="CountryName" type="tns:CountryNameType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="StreetNmbrType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PO_Box" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="StateProvType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="StateCode" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CountryNameType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Code" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PaymentCardType">
+		<xs:sequence>
+			<xs:element name="CardHolderName" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardIssuerName" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="BankID" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address" type="tns:AddressType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CardType" type="xs:string"/>
+		<xs:attribute name="CardCode" type="xs:string"/>
+		<xs:attribute name="CardNumber" type="xs:string"/>
+		<xs:attribute name="SeriesCode" type="xs:string"/>
+		<xs:attribute name="EffectiveDate" type="xs:string"/>
+		<xs:attribute name="ExpireDate" type="xs:string"/>
+		<xs:attribute name="MaskedCardNumber" type="xs:string"/>
+		<xs:attribute name="CardHolderRPH" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="TPA_Extensions_Type">
+		<xs:sequence>
+			<xs:any minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdditionalChargeType">
+		<xs:sequence>
+			<xs:element name="Amount" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="Description" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="ChargeTemplateID" type="xs:int"/>
+		<xs:attribute name="Quantity" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<xs:simpleType name="DayOfWeekType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mon"/>
+			<xs:enumeration value="Tue"/>
+			<xs:enumeration value="Wed"/>
+			<xs:enumeration value="Thu"/>
+			<xs:enumeration value="Fri"/>
+			<xs:enumeration value="Sat"/>
+			<xs:enumeration value="Sun"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="GuestCountType">
+		<xs:sequence>
+			<xs:element name="GuestCount" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="AgeQualifyingCode" type="xs:string"/>
+					<xs:attribute name="Age" type="xs:integer"/>
+					<xs:attribute name="Count" type="xs:integer"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="IsPerRoom" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="DateTimeSpanType">
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="EndDateWindow" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="EarliestDate" type="xs:string"/>
+						<xs:attribute name="LatestDate" type="xs:string"/>
+						<xs:attribute name="DOW" type="tns:DayOfWeekType"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="StartDateWindow" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="EarliestDate" type="xs:string"/>
+						<xs:attribute name="LatestDate" type="xs:string"/>
+						<xs:attribute name="DOW" type="tns:DayOfWeekType"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DateWindowRange" type="tns:TimeInstantType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Start" type="xs:string"/>
+		<xs:attribute name="Duration" type="xs:string"/>
+		<xs:attribute name="End" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="TimeInstantType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="WindowBefore" type="xs:duration"/>
+				<xs:attribute name="WindowAfter" type="xs:duration"/>
+				<xs:attribute name="CrossDateAllowedIndicator" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="BasicUnitInfoType">
+		<xs:sequence>
+			<xs:element name="VendorMessages" type="tns:ArrayOfVendorMessageType" minOccurs="0"/>
+			<xs:element name="Position" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Latitude" type="xs:string"/>
+					<xs:attribute name="Longitude" type="xs:string"/>
+					<xs:attribute name="Altitude" type="xs:string"/>
+					<xs:attribute name="AltitudeUnitOfMeasureCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address" type="tns:AddressInfoType" minOccurs="0"/>
+			<xs:element name="ContactNumbers" type="tns:ArrayOfBasicUnitInfoTypeContactNumber" minOccurs="0"/>
+			<xs:element name="Award" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Provider" type="xs:string"/>
+					<xs:attribute name="Rating" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnitAmenity" type="tns:UnitAmenityType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="UnitSummary" type="tns:UnitStayCandidateType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+		<xs:attribute name="UnitCode" type="xs:string"/>
+		<xs:attribute name="UnitName" type="xs:string"/>
+		<xs:attribute name="InfoSource" type="xs:string"/>
+		<xs:attribute name="UnitClassCode" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfVendorMessageType">
+		<xs:sequence>
+			<xs:element name="VendorMessage" type="tns:VendorMessageType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VendorMessageType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:FormattedTextType">
+				<xs:attribute name="InfoType" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FormattedTextType">
+		<xs:sequence>
+			<xs:element name="SubSection" type="tns:FormattedTextSubSectionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Title" type="xs:string"/>
+		<xs:attribute name="Language" type="xs:language"/>
+	</xs:complexType>
+	<xs:complexType name="FormattedTextSubSectionType">
+		<xs:sequence>
+			<xs:element name="Paragraph" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="SubTitle" type="xs:string"/>
+		<xs:attribute name="SubCode" type="xs:string"/>
+		<xs:attribute name="SubSectionNumber" type="xs:integer"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfBasicUnitInfoTypeContactNumber">
+		<xs:sequence>
+			<xs:element name="ContactNumber" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ShareSynchInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ShareMarketInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="PhoneLocationType" type="xs:string"/>
+					<xs:attribute name="PhoneTechType" type="xs:string"/>
+					<xs:attribute name="PhoneUseType" type="xs:string"/>
+					<xs:attribute name="CountryAccessCode" type="xs:string"/>
+					<xs:attribute name="AreaCityCode" type="xs:string"/>
+					<xs:attribute name="PhoneNumber" type="xs:string"/>
+					<xs:attribute name="Extension" type="xs:string"/>
+					<xs:attribute name="PIN" type="xs:string"/>
+					<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitAmenityType">
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Quantity" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:complexType name="UnitStayCandidateType">
+		<xs:sequence>
+			<xs:element name="RoomCounts" type="tns:ArrayOfRoomCountType" minOccurs="0"/>
+			<xs:element name="BedCounts" type="tns:ArrayOfBedCountType" minOccurs="0"/>
+			<xs:element name="GuestCounts" type="tns:GuestCountType" minOccurs="0"/>
+			<xs:element name="PetsPolicies" type="tns:PetsPoliciesType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="NumberFloors" type="xs:integer"/>
+		<xs:attribute name="NonSmoking" type="xs:boolean"/>
+		<xs:attribute name="AreaSquareFeet" type="xs:int"/>
+		<xs:attribute name="MaxOccupancy" type="xs:short"/>
+		<xs:attribute name="WhenBuilt" type="xs:date"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfRoomCountType">
+		<xs:sequence>
+			<xs:element name="RoomCount" type="tns:RoomCountType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RoomCountType">
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Min" type="xs:float"/>
+		<xs:attribute name="Max" type="xs:float"/>
+		<xs:attribute name="Fixed" type="xs:float"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfBedCountType">
+		<xs:sequence>
+			<xs:element name="BedCount" type="tns:BedCountType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BedCountType">
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Min" type="xs:unsignedByte"/>
+		<xs:attribute name="Max" type="xs:unsignedByte"/>
+		<xs:attribute name="Fixed" type="xs:unsignedByte"/>
+	</xs:complexType>
+	<xs:complexType name="PetsPoliciesType">
+		<xs:sequence>
+			<xs:element name="PetsPolicy" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Code" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="PetsAllowedCode" type="tns:PetsAllowedCodeType"/>
+	</xs:complexType>
+	<xs:simpleType name="PetsAllowedCodeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Pets Allowed"/>
+			<xs:enumeration value="Pets Not Allowed"/>
+			<xs:enumeration value="Assistive Animals Only"/>
+			<xs:enumeration value="Pets By Arrangements"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="UnitValueMatchType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:BasicUnitInfoType">
+				<xs:sequence>
+					<xs:element name="RateRange" minOccurs="0">
+						<xs:complexType>
+							<xs:attribute name="MinRate" type="xs:decimal"/>
+							<xs:attribute name="MaxRate" type="xs:decimal"/>
+							<xs:attribute name="FixedRate" type="xs:decimal"/>
+							<xs:attribute name="FullRate" type="xs:decimal"/>
+							<xs:attribute name="RateTimeUnit" type="tns:TimeUnitType"/>
+							<xs:attribute name="MinRent" type="xs:decimal"/>
+							<xs:attribute name="MaxRent" type="xs:decimal"/>
+							<xs:attribute name="FixedRent" type="xs:decimal"/>
+							<xs:attribute name="FullRent" type="xs:decimal"/>
+							<xs:attribute name="MinFees" type="xs:decimal"/>
+							<xs:attribute name="MaxFees" type="xs:decimal"/>
+							<xs:attribute name="FixedFees" type="xs:decimal"/>
+							<xs:attribute name="FullFees" type="xs:decimal"/>
+							<xs:attribute name="MinTax" type="xs:decimal"/>
+							<xs:attribute name="MaxTax" type="xs:decimal"/>
+							<xs:attribute name="FixedTax" type="xs:decimal"/>
+							<xs:attribute name="FullTax" type="xs:decimal"/>
+							<xs:attribute name="InfoSource" type="xs:string"/>
+							<xs:attribute name="TaxRate" type="xs:decimal"/>
+							<xs:attribute name="RateInfoNotAvailableInd" type="xs:boolean"/>
+							<xs:attribute name="CommissionPercent" type="xs:decimal"/>
+							<xs:attribute name="MinCommissionPercent" type="xs:decimal"/>
+							<xs:attribute name="MaxCommissionPercent" type="xs:decimal"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="LastMinuteDiscountRange" type="tns:LastMinuteDiscountRangeType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="MoreDataEchoToken" type="xs:string"/>
+				<xs:attribute name="SameCountryInd" type="xs:boolean"/>
+				<xs:attribute name="AvailabilityStatus" type="tns:RateIndicatorType"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LastMinuteDiscountRangeType">
+		<xs:attribute name="MinAdvanceBookingOffset" type="xs:duration"/>
+		<xs:attribute name="MaxAdvanceBookingOffset" type="xs:duration"/>
+		<xs:attribute name="MinDiscountPercent" type="xs:double"/>
+		<xs:attribute name="MaxDiscountPercent" type="xs:double"/>
+	</xs:complexType>
+	<xs:simpleType name="RateIndicatorType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ChangeDuringStay"/>
+			<xs:enumeration value="MultipleNights"/>
+			<xs:enumeration value="Exclusive"/>
+			<xs:enumeration value="OnRequest"/>
+			<xs:enumeration value="LimitedAvailability"/>
+			<xs:enumeration value="AvailableForSale"/>
+			<xs:enumeration value="ClosedOut"/>
+			<xs:enumeration value="OtherAvailable"/>
+			<xs:enumeration value="UnableToProcess"/>
+			<xs:enumeration value="NoAvailability"/>
+			<xs:enumeration value="RoomTypeClosed"/>
+			<xs:enumeration value="RatePlanClosed"/>
+			<xs:enumeration value="LOS_Restricted"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ArrayOfParagraphType">
+		<xs:sequence>
+			<xs:element name="Description" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfResGuestRPHsTypeResGuestRPH">
+		<xs:sequence>
+			<xs:element name="ResGuestRPH" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfCommentTypeComment">
+		<xs:sequence>
+			<xs:element name="Comment" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:ParagraphType">
+							<xs:attribute name="CommentOriginatorCode" type="xs:string"/>
+							<xs:attribute name="GuestViewable" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfSpecialRequestTypeSpecialRequest">
+		<xs:sequence>
+			<xs:element name="SpecialRequest" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:ParagraphType">
+							<xs:attribute name="RequestCode" type="xs:string"/>
+							<xs:attribute name="CodeContext" type="xs:string"/>
+							<xs:attribute name="NumberOfUnits" type="xs:integer"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfServiceRPHsTypeServiceRPH">
+		<xs:sequence>
+			<xs:element name="ServiceRPH" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="RPH" type="xs:string"/>
+					<xs:attribute name="IsPerRoom" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfServicesTypeService">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Price" type="tns:AmountType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="ServiceDetails" type="tns:ResCommonDetailType" minOccurs="0"/>
+						<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="ServicePricingType" type="tns:PricingType"/>
+					<xs:attribute name="ReservationStatusType" type="tns:PMS_ResStatusType"/>
+					<xs:attribute name="ServiceRPH" type="xs:string"/>
+					<xs:attribute name="ServiceInventoryCode" type="xs:string"/>
+					<xs:attribute name="RatePlanCode" type="xs:string"/>
+					<xs:attribute name="InventoryBlockCode" type="xs:string"/>
+					<xs:attribute name="PriceGuaranteed" type="xs:boolean"/>
+					<xs:attribute name="Inclusive" type="xs:boolean"/>
+					<xs:attribute name="Quantity" type="xs:integer"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AmountType">
+		<xs:sequence>
+			<xs:element name="Base" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="AdditionalGuestAmounts" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AdditionalGuestAmount" type="tns:AdditionalGuestAmountType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="AmountBeforeTax" type="xs:decimal"/>
+					<xs:attribute name="AmountAfterTax" type="xs:decimal"/>
+					<xs:attribute name="CurrencyCode" type="xs:string"/>
+					<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Fees" type="tns:ArrayOfFeeType" minOccurs="0"/>
+			<xs:element name="CancelPolicies" type="tns:CancelPenaltiesType" minOccurs="0"/>
+			<xs:element name="PaymentPolicies" type="tns:ArrayOfRequiredPaymentsTypeGuaranteePayment" minOccurs="0"/>
+			<xs:element name="Discount" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:DiscountType">
+							<xs:attribute name="AppliesTo">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Base"/>
+										<xs:enumeration value="AdditionalGuestAmount"/>
+										<xs:enumeration value="Fee"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="ItemRPH" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Total" type="tns:TotalType" minOccurs="0"/>
+			<xs:element name="RateDescription" type="tns:ParagraphType" minOccurs="0"/>
+			<xs:element name="AdditionalCharges" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AdditionalCharge" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Amount" type="tns:TotalType" minOccurs="0"/>
+								</xs:sequence>
+								<xs:attribute name="RoomAmenityCode" type="xs:string"/>
+								<xs:attribute name="Quantity" type="xs:nonNegativeInteger"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="AmountBeforeTax" type="xs:decimal"/>
+					<xs:attribute name="AmountAfterTax" type="xs:decimal"/>
+					<xs:attribute name="CurrencyCode" type="xs:string"/>
+					<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdvanceBookingRestriction" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Start" type="xs:string"/>
+					<xs:attribute name="Duration" type="xs:string"/>
+					<xs:attribute name="End" type="xs:string"/>
+					<xs:attribute name="MinAdvanceBookingOffset" type="xs:duration"/>
+					<xs:attribute name="MaxAdvanceBookingOffset" type="xs:duration"/>
+					<xs:attribute name="Mon" type="xs:boolean"/>
+					<xs:attribute name="Tue" type="xs:boolean"/>
+					<xs:attribute name="Weds" type="xs:boolean"/>
+					<xs:attribute name="Thur" type="xs:boolean"/>
+					<xs:attribute name="Fri" type="xs:boolean"/>
+					<xs:attribute name="Sat" type="xs:boolean"/>
+					<xs:attribute name="Sun" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="AgeQualifyingCode" type="xs:string"/>
+		<xs:attribute name="MinAge" type="xs:integer"/>
+		<xs:attribute name="MaxAge" type="xs:integer"/>
+		<xs:attribute name="AgeTimeUnit" type="tns:TimeUnitType"/>
+		<xs:attribute name="GuaranteedInd" type="xs:boolean"/>
+		<xs:attribute name="NumberOfUnits" type="xs:integer"/>
+		<xs:attribute name="RateTimeUnit" type="tns:TimeUnitType"/>
+		<xs:attribute name="UnitMultiplier" type="xs:positiveInteger"/>
+		<xs:attribute name="MinGuestApplicable" type="xs:positiveInteger"/>
+		<xs:attribute name="MaxGuestApplicable" type="xs:positiveInteger"/>
+		<xs:attribute name="MinLOS" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="MaxLOS" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="StayOverDate" type="tns:DayOfWeekType"/>
+		<xs:attribute name="AlternateCurrencyInd" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="ResCommonDetailType">
+		<xs:sequence>
+			<xs:element name="GuestCounts" type="tns:GuestCountType" minOccurs="0"/>
+			<xs:element name="TimeSpan" type="tns:DateTimeSpanType" minOccurs="0"/>
+			<xs:element name="ResGuestRPHs" type="tns:ArrayOfResGuestRPHsTypeResGuestRPH" minOccurs="0"/>
+			<xs:element name="Memberships" type="tns:ArrayOfMembershipTypeMembership" minOccurs="0"/>
+			<xs:element name="Comments" type="tns:ArrayOfCommentTypeComment" minOccurs="0"/>
+			<xs:element name="SpecialRequests" type="tns:ArrayOfSpecialRequestTypeSpecialRequest" minOccurs="0"/>
+			<xs:element name="Guarantee" type="tns:GuaranteeType" minOccurs="0"/>
+			<xs:element name="DepositPayments" type="tns:ArrayOfRequiredPaymentsTypeGuaranteePayment" minOccurs="0"/>
+			<xs:element name="CancelPenalties" type="tns:CancelPenaltiesType" minOccurs="0"/>
+			<xs:element name="Fees" type="tns:ArrayOfFeeType" minOccurs="0"/>
+			<xs:element name="Total" type="tns:TotalType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfMembershipTypeMembership">
+		<xs:sequence>
+			<xs:element name="Membership" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ProgramCode" type="xs:string"/>
+					<xs:attribute name="BonusCode" type="xs:string"/>
+					<xs:attribute name="AccountID" type="xs:string"/>
+					<xs:attribute name="PointsEarned" type="xs:integer"/>
+					<xs:attribute name="TravelSector" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GuaranteeType">
+		<xs:sequence>
+			<xs:element name="GuaranteesAccepted" type="tns:ArrayOfGuaranteeTypeGuaranteeAccepted" minOccurs="0"/>
+			<xs:element name="Deadline" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="AbsoluteDeadline" type="xs:string"/>
+					<xs:attribute name="OffsetTimeUnit" type="tns:TimeUnitType"/>
+					<xs:attribute name="OffsetUnitMultiplier" type="xs:integer"/>
+					<xs:attribute name="OffsetDropTime">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="BeforeArrival"/>
+								<xs:enumeration value="AfterBooking"/>
+								<xs:enumeration value="AfterConfirmation"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Comments" type="tns:ArrayOfCommentTypeComment" minOccurs="0"/>
+			<xs:element name="GuaranteeDescription" type="tns:ParagraphType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="RetributionType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ResAutoCancelled"/>
+					<xs:enumeration value="ResNotGuaranteed"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="GuaranteeCode" type="xs:string"/>
+		<xs:attribute name="GuaranteeType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="GuaranteeRequired"/>
+					<xs:enumeration value="None"/>
+					<xs:enumeration value="CC/DC/Voucher"/>
+					<xs:enumeration value="Profile"/>
+					<xs:enumeration value="Deposit"/>
+					<xs:enumeration value="PrePay"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="HoldTime" type="xs:time"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfGuaranteeTypeGuaranteeAccepted">
+		<xs:sequence>
+			<xs:element name="GuaranteeAccepted" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:PaymentFormType">
+							<xs:attribute name="Default" type="xs:boolean"/>
+							<xs:attribute name="NoCardHolderInfoReqInd" type="xs:boolean"/>
+							<xs:attribute name="NameReqInd" type="xs:boolean"/>
+							<xs:attribute name="AddressReqInd" type="xs:boolean"/>
+							<xs:attribute name="PhoneReqInd" type="xs:boolean"/>
+							<xs:attribute name="InterbankNbrReqInd" type="xs:boolean"/>
+							<xs:attribute name="BookingSourceAllowedInd" type="xs:boolean"/>
+							<xs:attribute name="CorpDiscountNbrAllowedInd" type="xs:boolean"/>
+							<xs:attribute name="GuaranteeTypeCode" type="xs:string"/>
+							<xs:attribute name="GuaranteeID" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EVRN_ResGlobalInfoType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:ResCommonDetailType">
+				<xs:sequence>
+					<xs:element name="UnitReservationIDs" type="tns:ArrayOfUnitReservationIDsTypeUnitReservationID" minOccurs="0"/>
+					<xs:element name="RoutingHops" type="tns:ArrayOfRoutingHopTypeRoutingHop" minOccurs="0"/>
+					<xs:element name="Profiles" type="tns:ArrayOfProfilesTypeProfileInfo" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfUnitReservationIDsTypeUnitReservationID">
+		<xs:sequence>
+			<xs:element name="UnitReservationID" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ResID_Type" type="xs:string"/>
+					<xs:attribute name="ResID_Value" type="xs:string"/>
+					<xs:attribute name="ResID_Source" type="xs:string"/>
+					<xs:attribute name="ResID_SourceContext" type="xs:string"/>
+					<xs:attribute name="ResID_Date" type="xs:dateTime"/>
+					<xs:attribute name="ForGuest" type="xs:boolean" default="false"/>
+					<xs:attribute name="ResGuestRPH" type="xs:string"/>
+					<xs:attribute name="CancelOriginatorCode" type="xs:string"/>
+					<xs:attribute name="CancellationDate" type="xs:dateTime"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfRoutingHopTypeRoutingHop">
+		<xs:sequence>
+			<xs:element name="RoutingHop" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="SystemCode" type="xs:string"/>
+					<xs:attribute name="LocalRefID" type="xs:string"/>
+					<xs:attribute name="TimeStamp" type="xs:dateTime"/>
+					<xs:attribute name="Comment" type="xs:string"/>
+					<xs:attribute name="SequenceNmbr" type="xs:integer"/>
+					<xs:attribute name="Data" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfProfilesTypeProfileInfo">
+		<xs:sequence>
+			<xs:element name="ProfileInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+						<xs:element name="Profile" type="tns:ProfileType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProfileType">
+		<xs:sequence>
+			<xs:element name="Accesses" type="tns:AccessesType" minOccurs="0"/>
+			<xs:element name="Customer" type="tns:CustomerType" minOccurs="0"/>
+			<xs:element name="PrefCollections" type="tns:PreferencesType" minOccurs="0"/>
+			<xs:element name="CompanyInfo" type="tns:CompanyInfoType" minOccurs="0"/>
+			<xs:element name="Affiliations" type="tns:AffiliationsType" minOccurs="0"/>
+			<xs:element name="Agreements" type="tns:AgreementsType" minOccurs="0"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareAllSynchInd" type="tns:YesNoType" default="No"/>
+		<xs:attribute name="ShareAllMarketInd" type="tns:YesNoType" default="No"/>
+		<xs:attribute name="ProfileType" type="xs:string"/>
+		<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+		<xs:attribute name="CreatorID" type="xs:string"/>
+		<xs:attribute name="LastModifyDateTime" type="xs:dateTime"/>
+		<xs:attribute name="LastModifierID" type="xs:string"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="AccessesType">
+		<xs:sequence>
+			<xs:element name="Access" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AccessPerson" type="tns:PersonNameType" minOccurs="0"/>
+						<xs:element name="AccessComment" type="tns:FreeTextType" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="ActionType">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Create"/>
+								<xs:enumeration value="Read"/>
+								<xs:enumeration value="Update"/>
+								<xs:enumeration value="Delete"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ActionDateTime" type="xs:dateTime"/>
+					<xs:attribute name="ID" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="PersonNameType">
+		<xs:sequence>
+			<xs:element name="NamePrefix" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GivenName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MiddleName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SurnamePrefix" type="xs:string" minOccurs="0"/>
+			<xs:element name="Surname" type="xs:string" minOccurs="0"/>
+			<xs:element name="NameSuffix" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="NameTitle" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="NameType" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="FreeTextType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Language" type="xs:language"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CertificationType">
+		<xs:simpleContent>
+			<xs:extension base="tns:FreeTextType">
+				<xs:attribute name="ID" type="xs:string"/>
+				<xs:attribute name="SingleVendorInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="SingleVndr"/>
+							<xs:enumeration value="Alliance"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="EffectiveDate" type="xs:date"/>
+				<xs:attribute name="ExpireDate" type="xs:date"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ErrorType">
+		<xs:simpleContent>
+			<xs:extension base="tns:FreeTextType">
+				<xs:attribute name="Type" type="xs:string"/>
+				<xs:attribute name="ShortText" type="xs:string"/>
+				<xs:attribute name="Code" type="xs:string"/>
+				<xs:attribute name="Status" type="xs:string"/>
+				<xs:attribute name="Tag" type="xs:string"/>
+				<xs:attribute name="RecordID" type="xs:string"/>
+				<xs:attribute name="NodeList" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="WarningType">
+		<xs:simpleContent>
+			<xs:extension base="tns:FreeTextType">
+				<xs:attribute name="Type" type="xs:string"/>
+				<xs:attribute name="ShortText" type="xs:string"/>
+				<xs:attribute name="Code" type="xs:string"/>
+				<xs:attribute name="Status" type="xs:string"/>
+				<xs:attribute name="Tag" type="xs:string"/>
+				<xs:attribute name="RecordID" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CommissionInfoType">
+		<xs:simpleContent>
+			<xs:extension base="tns:FreeTextType">
+				<xs:attribute name="ShareSynchInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="ShareMarketInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="CommissionPlanCode" type="xs:string"/>
+				<xs:attribute name="Amount" type="xs:decimal"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CustomerType">
+		<xs:sequence>
+			<xs:element name="PersonName" type="tns:PersonNameType" minOccurs="0"/>
+			<xs:element name="Telephone" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="EffectiveDate" type="xs:date"/>
+					<xs:attribute name="ExpireDate" type="xs:date"/>
+					<xs:attribute name="ShareSynchInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ShareMarketInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="PhoneLocationType" type="xs:string"/>
+					<xs:attribute name="PhoneTechType" type="xs:string"/>
+					<xs:attribute name="PhoneUseType" type="xs:string"/>
+					<xs:attribute name="CountryAccessCode" type="xs:string"/>
+					<xs:attribute name="AreaCityCode" type="xs:string"/>
+					<xs:attribute name="PhoneNumber" type="xs:string"/>
+					<xs:attribute name="Extension" type="xs:string"/>
+					<xs:attribute name="PIN" type="xs:string"/>
+					<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Email" type="tns:EmailType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:AddressInfoType">
+							<xs:sequence>
+								<xs:element name="CompanyName" type="tns:CompanyNameType" minOccurs="0"/>
+							</xs:sequence>
+							<xs:attribute name="EffectiveDate" type="xs:date"/>
+							<xs:attribute name="ExpireDate" type="xs:date"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="URL" type="tns:URL_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CitizenCountryName" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Code" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PhysChallName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PetInfo" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentForm" type="tns:PaymentFormType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RelatedTraveler" type="tns:RelatedTravelerType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContactPerson" type="tns:ContactPersonType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Document" type="tns:DocumentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CustLoyalty" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ProgramID" type="xs:string"/>
+					<xs:attribute name="MembershipID" type="xs:string"/>
+					<xs:attribute name="TravelSector" type="xs:string"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+					<xs:attribute name="VendorCode">
+						<xs:simpleType>
+							<xs:list itemType="xs:string"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EmployeeInfo" type="tns:EmployeeInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EmployerInfo" type="tns:CompanyNameType" minOccurs="0"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Gender">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Male"/>
+					<xs:enumeration value="Female"/>
+					<xs:enumeration value="Unknown"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Deceased" type="xs:boolean"/>
+		<xs:attribute name="LockoutType" type="xs:string"/>
+		<xs:attribute name="BirthDate" type="xs:date"/>
+		<xs:attribute name="CurrencyCode" type="xs:string"/>
+		<xs:attribute name="DecimalPlaces" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="VIP_Indicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="EmailType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ShareSynchInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="ShareMarketInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+				<xs:attribute name="EmailType" type="xs:string"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="URL_Type">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute name="ShareSynchInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="ShareMarketInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Yes"/>
+							<xs:enumeration value="No"/>
+							<xs:enumeration value="Inherit"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="Type" type="xs:string"/>
+				<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RelatedTravelerType">
+		<xs:sequence>
+			<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+			<xs:element name="PersonName" type="tns:PersonNameType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Relation" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ContactPersonType">
+		<xs:sequence>
+			<xs:element name="PersonName" type="tns:PersonNameType" minOccurs="0"/>
+			<xs:element name="Telephone" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ShareSynchInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ShareMarketInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="PhoneLocationType" type="xs:string"/>
+					<xs:attribute name="PhoneTechType" type="xs:string"/>
+					<xs:attribute name="PhoneUseType" type="xs:string"/>
+					<xs:attribute name="CountryAccessCode" type="xs:string"/>
+					<xs:attribute name="AreaCityCode" type="xs:string"/>
+					<xs:attribute name="PhoneNumber" type="xs:string"/>
+					<xs:attribute name="Extension" type="xs:string"/>
+					<xs:attribute name="PIN" type="xs:string"/>
+					<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address" type="tns:AddressInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Email" type="tns:EmailType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="URL" type="tns:URL_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CompanyName" type="tns:CompanyNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EmployeeInfo" type="tns:EmployeeInfoType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+		<xs:attribute name="ContactType" type="xs:string"/>
+		<xs:attribute name="Relation" type="xs:string"/>
+		<xs:attribute name="EmergencyFlag" type="xs:boolean" default="false"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="EmployeeInfoType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="EmployeeId" type="xs:string"/>
+				<xs:attribute name="EmployeeLevel" type="xs:string"/>
+				<xs:attribute name="EmployeeTitle" type="xs:string"/>
+				<xs:attribute name="EmployeeStatus" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DocumentType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="DocHolderFormattedName" type="tns:PersonNameType" minOccurs="0"/>
+				<xs:element name="DocHolderName" type="xs:string" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="DocLimitations" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AdditionalPersonNames" type="tns:ArrayOfString" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="DocIssueAuthority" type="xs:string"/>
+		<xs:attribute name="DocIssueLocation" type="xs:string"/>
+		<xs:attribute name="DocID" type="xs:string"/>
+		<xs:attribute name="DocType" type="xs:string"/>
+		<xs:attribute name="Gender">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Male"/>
+					<xs:enumeration value="Female"/>
+					<xs:enumeration value="Unknown"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="BirthDate" type="xs:date"/>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="DocIssueStateProv" type="xs:string"/>
+		<xs:attribute name="DocIssueCountry" type="xs:string"/>
+		<xs:attribute name="BirthCountry" type="xs:string"/>
+		<xs:attribute name="DocHolderNationality" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfString">
+		<xs:sequence>
+			<xs:element name="AdditionalPersonName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PreferencesType">
+		<xs:sequence>
+			<xs:element name="PrefCollection" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CommonPref" type="tns:CommonPrefType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="VehicleRentalPref" type="tns:VehicleProfileRentalPrefType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="AirlinePref" type="tns:AirlinePrefType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="HotelPref" type="tns:HotelPrefType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="OtherSrvcPref" type="tns:OtherSrvcPrefType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="ShareSynchInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ShareMarketInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="TravelPurpose" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CommonPrefType">
+		<xs:sequence>
+			<xs:element name="NamePref" type="tns:NamePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PhonePref" type="tns:PhonePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AddressPref" type="tns:AddressPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentFormPref" type="tns:PaymentFormPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InterestPref" type="tns:InterestPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InsurancePref" type="tns:InsurancePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SeatingPref" type="tns:SeatingPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TicketDistribPref" type="tns:TicketDistribPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MediaEntertainPref" type="tns:MediaEntertainPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PetInfoPref" type="tns:PetInfoPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MealPref" type="tns:MealPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LoyaltyPref" type="tns:LoyaltyPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpecRequestPref" type="tns:SpecRequestPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RelatedTravelerPref" type="tns:RelatedTravelerPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SmokingAllowed" type="xs:boolean" default="false"/>
+		<xs:attribute name="PrimaryLangID" type="xs:language"/>
+		<xs:attribute name="AltLangID" type="xs:language"/>
+	</xs:complexType>
+	<xs:complexType name="NamePrefType">
+		<xs:sequence>
+			<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+			<xs:element name="PersonName" type="tns:PersonNameType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+	</xs:complexType>
+	<xs:complexType name="PhonePrefType">
+		<xs:sequence>
+			<xs:element name="Telephone" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="ShareSynchInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ShareMarketInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="PhoneLocationType" type="xs:string"/>
+					<xs:attribute name="PhoneTechType" type="xs:string"/>
+					<xs:attribute name="PhoneUseType" type="xs:string"/>
+					<xs:attribute name="CountryAccessCode" type="xs:string"/>
+					<xs:attribute name="AreaCityCode" type="xs:string"/>
+					<xs:attribute name="PhoneNumber" type="xs:string"/>
+					<xs:attribute name="Extension" type="xs:string"/>
+					<xs:attribute name="PIN" type="xs:string"/>
+					<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressPrefType">
+		<xs:sequence>
+			<xs:element name="Address" type="tns:AddressInfoType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PaymentFormPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="InterestPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="InsurancePrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SeatingPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="SeatDirection" type="xs:string"/>
+				<xs:attribute name="SeatLocation" type="xs:string"/>
+				<xs:attribute name="SeatPosition" type="xs:string"/>
+				<xs:attribute name="SeatRow" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TicketDistribPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="DistribType" type="xs:string"/>
+				<xs:attribute name="TicketTime" type="xs:duration"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MediaEntertainPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PetInfoPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MealPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="MealType" type="tns:MealType"/>
+				<xs:attribute name="FavoriteFood" type="xs:string"/>
+				<xs:attribute name="Beverage" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="MealType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AVML"/>
+			<xs:enumeration value="BBML"/>
+			<xs:enumeration value="BLML"/>
+			<xs:enumeration value="CHML"/>
+			<xs:enumeration value="DBML"/>
+			<xs:enumeration value="FPML"/>
+			<xs:enumeration value="GFML"/>
+			<xs:enumeration value="HFML"/>
+			<xs:enumeration value="HNML"/>
+			<xs:enumeration value="KSML"/>
+			<xs:enumeration value="LCML"/>
+			<xs:enumeration value="LFML"/>
+			<xs:enumeration value="LPML"/>
+			<xs:enumeration value="LSML"/>
+			<xs:enumeration value="MOML"/>
+			<xs:enumeration value="NLML"/>
+			<xs:enumeration value="ORML"/>
+			<xs:enumeration value="PRML"/>
+			<xs:enumeration value="RVML"/>
+			<xs:enumeration value="SFML"/>
+			<xs:enumeration value="SPML"/>
+			<xs:enumeration value="VGML"/>
+			<xs:enumeration value="VLML"/>
+			<xs:enumeration value="RGML"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LoyaltyPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SpecRequestPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RelatedTravelerPrefType">
+		<xs:sequence>
+			<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+	</xs:complexType>
+	<xs:complexType name="VehicleProfileRentalPrefType">
+		<xs:sequence>
+			<xs:element name="LoyaltyPref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VendorPref" type="tns:CompanyNamePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentFormPref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CoveragePref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="SpecialReqPref" type="tns:VehicleSpecialReqPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="VehTypePref" type="tns:VehiclePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpecialEquipPref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Action" type="tns:ActionType"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SmokingAllowed" type="xs:boolean" default="false"/>
+		<xs:attribute name="GasPrePay" type="xs:boolean" default="false"/>
+	</xs:complexType>
+	<xs:complexType name="VehicleSpecialReqPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="VehiclePrefType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:VehicleCoreType">
+				<xs:attribute name="TypePref" type="tns:PreferLevelType"/>
+				<xs:attribute name="ClassPref" type="tns:PreferLevelType"/>
+				<xs:attribute name="AirConditionPref" type="tns:PreferLevelType"/>
+				<xs:attribute name="TransmissionPref" type="tns:PreferLevelType"/>
+				<xs:attribute name="VendorCarType" type="xs:string"/>
+				<xs:attribute name="VehicleQty" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="Code" type="xs:string"/>
+				<xs:attribute name="CodeContext" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VehicleCoreType">
+		<xs:sequence>
+			<xs:element name="VehType" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="VehicleCategory" type="xs:string"/>
+					<xs:attribute name="DoorCount" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VehClass" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Size" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="AirConditionInd" type="xs:boolean"/>
+		<xs:attribute name="TransmissionType" type="tns:VehicleTransmissionType"/>
+		<xs:attribute name="FuelType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Unspecified"/>
+					<xs:enumeration value="Diesel"/>
+					<xs:enumeration value="Hybrid"/>
+					<xs:enumeration value="Electric"/>
+					<xs:enumeration value="LPG_CompressedGas"/>
+					<xs:enumeration value="Hydrogen"/>
+					<xs:enumeration value="MultiFuel"/>
+					<xs:enumeration value="Petrol"/>
+					<xs:enumeration value="Ethanol"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="DriveType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="AWD"/>
+					<xs:enumeration value="4WD"/>
+					<xs:enumeration value="Unspecified"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="VehicleTransmissionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Automatic"/>
+			<xs:enumeration value="Manual"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ActionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Add-Update"/>
+			<xs:enumeration value="Cancel"/>
+			<xs:enumeration value="Delete"/>
+			<xs:enumeration value="Add"/>
+			<xs:enumeration value="Replace"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AirlinePrefType">
+		<xs:sequence>
+			<xs:element name="LoyaltyPref" type="tns:LoyaltyPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="VendorPref" type="tns:CompanyNamePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentFormPref" type="tns:PaymentFormPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AirportOriginPref" type="tns:AirportPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AirportRoutePref" type="tns:AirportPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FareRestrictPref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="FareRestriction" type="xs:string"/>
+					<xs:attribute name="Date" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FlightTypePref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="FlightType" type="tns:FlightTypeType"/>
+					<xs:attribute name="MaxConnections" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="NonScheduledFltInfo">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="ChartersOnly"/>
+								<xs:enumeration value="ExcludeCharters"/>
+								<xs:enumeration value="All"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="BackhaulIndicator" type="xs:boolean"/>
+					<xs:attribute name="GroundTransportIndicator" type="xs:boolean"/>
+					<xs:attribute name="DirectAndNonStopOnlyInd" type="xs:boolean"/>
+					<xs:attribute name="NonStopsOnlyInd" type="xs:boolean"/>
+					<xs:attribute name="OnlineConnectionsOnlyInd" type="xs:boolean"/>
+					<xs:attribute name="RoutingType">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Normal"/>
+								<xs:enumeration value="Mirror"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EquipPref" type="tns:EquipmentTypePref" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CabinPref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Cabin" type="tns:CabinType"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SeatPref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="TicketDistribPref" type="tns:TicketDistribPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MealPref" type="tns:MealPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpecRequestPref" type="tns:SpecRequestPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SSR_Pref" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="SSR_Code" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+			<xs:element name="MediaEntertainPref" type="tns:MediaEntertainPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PetInfoPref" type="tns:PetInfoPrefType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+		<xs:attribute name="SmokingAllowed" type="xs:boolean" default="false"/>
+		<xs:attribute name="PassengerTypeCode" type="xs:string"/>
+		<xs:attribute name="AirTicketType" type="tns:TicketType"/>
+	</xs:complexType>
+	<xs:complexType name="AirportPrefType">
+		<xs:simpleContent>
+			<xs:extension base="tns:LocationType">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LocationType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="LocationCode" type="xs:string"/>
+				<xs:attribute name="CodeContext" type="xs:string" default="IATA"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="FlightTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Nonstop"/>
+			<xs:enumeration value="Direct"/>
+			<xs:enumeration value="Connection"/>
+			<xs:enumeration value="SingleConnection"/>
+			<xs:enumeration value="DoubleConnection"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EquipmentTypePref">
+		<xs:simpleContent>
+			<xs:extension base="tns:EquipmentType">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="WideBody" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="EquipmentType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="AirEquipType" type="xs:string"/>
+				<xs:attribute name="ChangeofGauge" type="xs:boolean" default="false"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="CabinType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="First"/>
+			<xs:enumeration value="Business"/>
+			<xs:enumeration value="Economy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TicketType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="eTicket"/>
+			<xs:enumeration value="Paper"/>
+			<xs:enumeration value="MCO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="HotelPrefType">
+		<xs:sequence>
+			<xs:element name="LoyaltyPref" type="tns:LoyaltyPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentFormPref" type="tns:PaymentFormPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HotelChainPref" type="tns:CompanyNamePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PropertyNamePref" type="tns:PropertyNamePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PropertyLocationPref" type="tns:PropertyLocationPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PropertyTypePref" type="tns:PropertyTypePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PropertyClassPref" type="tns:PropertyClassPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PropertyAmenityPref" type="tns:PropertyAmenityPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RoomAmenityPref" type="tns:RoomAmenityPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RoomLocationPref" type="tns:RoomLocationPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="BedTypePref" type="tns:BedTypePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FoodSrvcPref" type="tns:FoodSrvcPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MediaEntertainPref" type="tns:MediaEntertainPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PetInfoPref" type="tns:PetInfoPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MealPref" type="tns:MealPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RecreationSrvcPref" type="tns:RecreationSrvcPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="BusinessSrvcPref" type="tns:BusinessSrvcPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PersonalSrvcPref" type="tns:PersonalSrvcPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SecurityFeaturePref" type="tns:SecurityFeaturePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PhysChallFeaturePref" type="tns:PhysChallFeaturePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpecRequestPref" type="tns:SpecRequestPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SmokingAllowed" type="xs:boolean" default="false"/>
+		<xs:attribute name="RatePlanCode" type="xs:string"/>
+		<xs:attribute name="HotelGuestType" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="PropertyNamePrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PropertyLocationPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="PropertyLocationType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PropertyTypePrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="PropertyType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PropertyClassPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="PropertyClassType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PropertyAmenityPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="PropertyAmenityType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RoomAmenityPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="RoomAmenity" type="xs:string"/>
+				<xs:attribute name="ExistsCode" type="xs:string"/>
+				<xs:attribute name="Quantity" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="QualityLevel" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RoomLocationPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="RoomLocationType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="BedTypePrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="BedType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="FoodSrvcPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="FoodSrvcType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RecreationSrvcPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="RecreationSrvcType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="BusinessSrvcPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="BusinessSrvcType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PersonalSrvcPrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SecurityFeaturePrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PhysChallFeaturePrefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+				<xs:attribute name="PhysChallFeatureType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="OtherSrvcPrefType">
+		<xs:sequence>
+			<xs:element name="OtherSrvcName" type="xs:string" minOccurs="0"/>
+			<xs:element name="VendorPref" type="tns:CompanyNamePrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LoyaltyPref" type="tns:LoyaltyPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentFormPref" type="tns:PaymentFormPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpecRequestPref" type="tns:SpecRequestPrefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PreferLevel" type="tns:PreferLevelType" default="Preferred"/>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="TravelPurpose" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="CompanyInfoType">
+		<xs:sequence>
+			<xs:element name="CompanyName" type="tns:CompanyNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AddressInfo" type="tns:AddressInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TelephoneInfo" type="tns:TelephoneInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Email" type="tns:EmailType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="URL" type="tns:URL_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="BusinessLocale" type="tns:AddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PaymentForm" type="tns:PaymentFormType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContactPerson" type="tns:ContactPersonType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TravelArranger" type="tns:TravelArrangerType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LoyaltyProgram" type="tns:LoyaltyProgramType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TelephoneInfoType">
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PhoneLocationType" type="xs:string"/>
+		<xs:attribute name="PhoneTechType" type="xs:string"/>
+		<xs:attribute name="PhoneUseType" type="xs:string"/>
+		<xs:attribute name="CountryAccessCode" type="xs:string"/>
+		<xs:attribute name="AreaCityCode" type="xs:string"/>
+		<xs:attribute name="PhoneNumber" type="xs:string"/>
+		<xs:attribute name="Extension" type="xs:string"/>
+		<xs:attribute name="PIN" type="xs:string"/>
+		<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+		<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="LoyaltyProgramType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ProgramCode" type="xs:string"/>
+				<xs:attribute name="SingleVendorInd">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="SingleVndr"/>
+							<xs:enumeration value="Alliance"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="LoyaltyLevel" type="xs:string"/>
+				<xs:attribute name="RPH" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AffiliationsType">
+		<xs:sequence>
+			<xs:element name="Organization" type="tns:OrganizationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Employer" type="tns:EmployerType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TravelArranger" type="tns:TravelArrangerType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TravelClub" type="tns:TravelClubType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Insurance" type="tns:InsuranceType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OrganizationType">
+		<xs:sequence>
+			<xs:element name="OrgMemberName" minOccurs="0">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:PersonNameType">
+							<xs:attribute name="Level" type="xs:string"/>
+							<xs:attribute name="Title" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OrgName" type="tns:CompanyNameType" minOccurs="0"/>
+			<xs:element name="RelatedOrgName" type="tns:CompanyNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TravelArranger" type="tns:TravelArrangerType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="OfficeType" type="tns:OfficeLocationType"/>
+	</xs:complexType>
+	<xs:simpleType name="OfficeLocationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Main"/>
+			<xs:enumeration value="Field"/>
+			<xs:enumeration value="Division"/>
+			<xs:enumeration value="Regional"/>
+			<xs:enumeration value="Remote"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EmployerType">
+		<xs:sequence>
+			<xs:element name="CompanyName" type="tns:CompanyNameType" minOccurs="0"/>
+			<xs:element name="RelatedEmployer" type="tns:CompanyNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EmployeeInfo" type="tns:EmployeeInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InternalRefNmbr" type="tns:FreeTextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TravelArranger" type="tns:TravelArrangerType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LoyaltyProgram" type="tns:LoyaltyProgramType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+		<xs:attribute name="OfficeType" type="tns:OfficeLocationType"/>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+	</xs:complexType>
+	<xs:complexType name="TravelClubType">
+		<xs:sequence>
+			<xs:element name="TravelClubName" type="tns:CompanyNameType" minOccurs="0"/>
+			<xs:element name="ClubMemberName" minOccurs="0">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:PersonNameType">
+							<xs:attribute name="ID" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+	</xs:complexType>
+	<xs:complexType name="InsuranceType">
+		<xs:sequence>
+			<xs:element name="InsuredName" type="tns:PersonNameType" minOccurs="0"/>
+			<xs:element name="InsuranceCompany" type="tns:CompanyNameType" minOccurs="0"/>
+			<xs:element name="Underwriter" type="tns:CompanyNameType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="InsuranceType" type="xs:string"/>
+		<xs:attribute name="PolicyNumber" type="xs:string"/>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+		<xs:attribute name="RPH" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="AgreementsType">
+		<xs:sequence>
+			<xs:element name="Certification" type="tns:CertificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AllianceConsortium" type="tns:AllianceConsortiumType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CommissionInfo" type="tns:CommissionInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ShareSynchInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShareMarketInd">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Yes"/>
+					<xs:enumeration value="No"/>
+					<xs:enumeration value="Inherit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="AllianceConsortiumType">
+		<xs:sequence>
+			<xs:element name="AllianceMember" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:CompanyNameType">
+							<xs:attribute name="MemberCode" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string"/>
+		<xs:attribute name="EffectiveDate" type="xs:date"/>
+		<xs:attribute name="ExpireDate" type="xs:date"/>
+	</xs:complexType>
+	<xs:simpleType name="YesNoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Yes"/>
+			<xs:enumeration value="No"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ResGlobalInfoType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:ResCommonDetailType">
+				<xs:sequence>
+					<xs:element name="HotelReservationIDs" type="tns:ArrayOfHotelReservationIDsTypeHotelReservationID" minOccurs="0"/>
+					<xs:element name="RoutingHops" type="tns:ArrayOfRoutingHopTypeRoutingHop" minOccurs="0"/>
+					<xs:element name="Profiles" type="tns:ArrayOfProfilesTypeProfileInfo" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfHotelReservationIDsTypeHotelReservationID">
+		<xs:sequence>
+			<xs:element name="HotelReservationID" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ResID_Type" type="xs:string"/>
+					<xs:attribute name="ResID_Value" type="xs:string"/>
+					<xs:attribute name="ResID_Source" type="xs:string"/>
+					<xs:attribute name="ResID_SourceContext" type="xs:string"/>
+					<xs:attribute name="ResID_Date" type="xs:dateTime"/>
+					<xs:attribute name="ForGuest" type="xs:boolean" default="false"/>
+					<xs:attribute name="ResGuestRPH" type="xs:string"/>
+					<xs:attribute name="CancelOriginatorCode" type="xs:string"/>
+					<xs:attribute name="CancellationDate" type="xs:dateTime"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PricingType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Per stay"/>
+			<xs:enumeration value="Per person"/>
+			<xs:enumeration value="Per night"/>
+			<xs:enumeration value="Per person per night"/>
+			<xs:enumeration value="Per use"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PMS_ResStatusType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Reserved"/>
+			<xs:enumeration value="Requested"/>
+			<xs:enumeration value="Request denied"/>
+			<xs:enumeration value="No-show"/>
+			<xs:enumeration value="Cancelled"/>
+			<xs:enumeration value="In-house"/>
+			<xs:enumeration value="Checked out"/>
+			<xs:enumeration value="Waitlisted"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ArrayOfResGuestsTypeResGuest">
+		<xs:sequence>
+			<xs:element name="ResGuest" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Profiles" type="tns:ArrayOfProfilesTypeProfileInfo" minOccurs="0"/>
+						<xs:element name="SpecialRequests" type="tns:ArrayOfSpecialRequestTypeSpecialRequest" minOccurs="0"/>
+						<xs:element name="Comments" type="tns:ArrayOfCommentTypeComment" minOccurs="0"/>
+						<xs:element name="ServiceRPHs" type="tns:ArrayOfServiceRPHsTypeServiceRPH" minOccurs="0"/>
+						<xs:element name="ProfileRPHs" type="tns:ArrayOfResGuestsTypeResGuestProfileRPH" minOccurs="0"/>
+						<xs:element name="ArrivalTransport" type="tns:TransportInfoType" minOccurs="0"/>
+						<xs:element name="DepartureTransport" type="tns:TransportInfoType" minOccurs="0"/>
+						<xs:element name="GuestCounts" type="tns:GuestCountType" minOccurs="0"/>
+						<xs:element name="InHouseTimeSpan" type="tns:DateTimeSpanType" minOccurs="0"/>
+						<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="ResGuestRPH" type="xs:string"/>
+					<xs:attribute name="AgeQualifyingCode" type="xs:string"/>
+					<xs:attribute name="ArrivalTime" type="xs:time"/>
+					<xs:attribute name="DepartureTime" type="xs:time"/>
+					<xs:attribute name="GroupEventCode" type="xs:string"/>
+					<xs:attribute name="VIP" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfResGuestsTypeResGuestProfileRPH">
+		<xs:sequence>
+			<xs:element name="ProfileRPH" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransportInfoType">
+		<xs:sequence>
+			<xs:element name="TransportInfo" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Type" type="xs:string"/>
+					<xs:attribute name="ID" type="xs:string"/>
+					<xs:attribute name="LocationCode" type="xs:string"/>
+					<xs:attribute name="Time" type="xs:dateTime"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WrittenConfInstType">
+		<xs:sequence>
+			<xs:element name="SupplementalData" type="tns:ParagraphType" minOccurs="0"/>
+			<xs:element name="Email" type="tns:EmailType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="LanguageID" type="xs:string"/>
+		<xs:attribute name="AddresseeName" type="xs:string"/>
+		<xs:attribute name="Address" type="xs:string"/>
+		<xs:attribute name="Telephone" type="xs:string"/>
+		<xs:attribute name="ConfirmInd" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:simpleType name="TransactionActionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Book"/>
+			<xs:enumeration value="Quote"/>
+			<xs:enumeration value="Hold"/>
+			<xs:enumeration value="Initiate"/>
+			<xs:enumeration value="Ignore"/>
+			<xs:enumeration value="Modify"/>
+			<xs:enumeration value="Commit"/>
+			<xs:enumeration value="Cancel"/>
+			<xs:enumeration value="CommitOverrideEdits"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ArrayOfUnitDescriptiveInfoRequestType">
+		<xs:sequence>
+			<xs:element name="UnitDescriptiveInfo" type="tns:UnitDescriptiveInfoRequestType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitDescriptiveInfoRequestType">
+		<xs:sequence>
+			<xs:element name="UnitInfo" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="SendData" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Policies" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="SendPolicies" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnitReviews" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="SendReviews" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Promotions" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="SendPromotions" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+		<xs:attribute name="UnitCode" type="xs:string"/>
+		<xs:attribute name="UnitName" type="xs:string"/>
+		<xs:attribute name="InfoSource" type="xs:string"/>
+		<xs:attribute name="StateCodeList">
+			<xs:simpleType>
+				<xs:list itemType="xs:string"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CountryCodeList">
+			<xs:simpleType>
+				<xs:list itemType="xs:string"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="BrandCodeList">
+			<xs:simpleType>
+				<xs:list itemType="xs:string"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="MoreDataEchoToken" type="xs:string"/>
+		<xs:attribute name="UpdatedAfter" type="xs:date"/>
+	</xs:complexType>
+	<xs:element name="EVRN_UnitDescriptiveInfoRS">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRSType">
+					<xs:sequence>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+							<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+							<xs:element name="UnitDescriptiveContents" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UnitDescriptiveContent" type="tns:UnitDescriptiveContentType" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="CachedData" type="xs:boolean"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EVRN_BaseRSType">
+		<xs:attribute name="EchoToken" type="xs:string"/>
+		<xs:attribute name="TimeStamp" type="xs:dateTime"/>
+		<xs:attribute name="Target" default="Production">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Test"/>
+					<xs:enumeration value="Production"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Version" type="xs:decimal" use="required"/>
+		<xs:attribute name="TransactionIdentifier" type="xs:string"/>
+		<xs:attribute name="SequenceNmbr" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="TransactionStatusCode">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Start"/>
+					<xs:enumeration value="End"/>
+					<xs:enumeration value="Rollback"/>
+					<xs:enumeration value="InSeries"/>
+					<xs:enumeration value="Continuation"/>
+					<xs:enumeration value="Subsequent"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="RetransmissionIndicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="UnitResResponseType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:EVRN_BaseRSType">
+				<xs:sequence>
+					<xs:element name="POS" type="tns:ArrayOfSourceType" minOccurs="0"/>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+						<xs:element name="UnitReservations" type="tns:UnitReservationsType" minOccurs="0"/>
+						<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+						<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="ResResponseType" type="tns:TransactionStatusType"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="WarningsType">
+		<xs:sequence>
+			<xs:element name="Warning" type="tns:WarningType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ErrorsType">
+		<xs:sequence>
+			<xs:element name="Error" type="tns:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SuccessType"/>
+	<xs:simpleType name="TransactionStatusType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Pending"/>
+			<xs:enumeration value="Cancelled"/>
+			<xs:enumeration value="Modified"/>
+			<xs:enumeration value="Committed"/>
+			<xs:enumeration value="Ignored"/>
+			<xs:enumeration value="On Hold"/>
+			<xs:enumeration value="Unsuccessful"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="UnitDescriptiveContentType">
+		<xs:sequence>
+			<xs:element name="UnitInfo" type="tns:UnitInfoType" minOccurs="0"/>
+			<xs:element name="Policies" type="tns:ArrayOfEVRN_PoliciesTypePolicy" minOccurs="0"/>
+			<xs:element name="UnitReviews" type="tns:UnitReviewsType" minOccurs="0"/>
+			<xs:element name="Promotions" type="tns:PromotionsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+		<xs:attribute name="UnitCode" type="xs:string"/>
+		<xs:attribute name="UnitName" type="xs:string"/>
+		<xs:attribute name="InfoSource" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="UnitInfoType">
+		<xs:sequence>
+			<xs:element name="UnitName" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="UnitShortName" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CategoryCodes" type="tns:EVRN_CategoryCodesType" minOccurs="0"/>
+			<xs:element name="Descriptions" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MultimediaDescriptions" minOccurs="0">
+							<xs:complexType mixed="false">
+								<xs:complexContent mixed="false">
+									<xs:extension base="tns:MultimediaDescriptionsType">
+										<xs:attribute name="InfoCode" type="xs:string"/>
+										<xs:attribute name="AdditionalDetailCode" type="xs:string"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DescriptiveText" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Position" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Latitude" type="xs:string"/>
+					<xs:attribute name="Longitude" type="xs:string"/>
+					<xs:attribute name="Altitude" type="xs:string"/>
+					<xs:attribute name="AltitudeUnitOfMeasureCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Services" type="tns:ArrayOfUnitInfoTypeService" minOccurs="0"/>
+			<xs:element name="Address" type="tns:AddressType" minOccurs="0"/>
+			<xs:element name="UnitAmenity" type="tns:UnitAmenityType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RateRanges" type="tns:ArrayOfRateRangeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="AreaSquareFeet" type="xs:decimal"/>
+		<xs:attribute name="MaxOccupancy" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="NumberFloors" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="WhenBuilt" type="xs:string"/>
+		<xs:attribute name="LastUpdated" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="EVRN_CategoryCodesType">
+		<xs:sequence>
+			<xs:element name="LocationCategory" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Code" type="xs:string"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="ExistsCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnitCategory" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Code" type="xs:string"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="ExistsCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RoomInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DescriptiveText" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="Code" type="xs:string"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="Quantity" type="xs:decimal"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BedInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Code" type="xs:string"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="Quantity" type="xs:nonNegativeInteger"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MultimediaDescriptionsType">
+		<xs:sequence>
+			<xs:element name="MultimediaDescription" type="tns:MultimediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="LastUpdated" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="MultimediaDescriptionType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="VideoItems" minOccurs="0">
+					<xs:complexType mixed="false">
+						<xs:complexContent mixed="false">
+							<xs:extension base="tns:VideoItemsType">
+								<xs:attribute name="MoreData" type="xs:boolean"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ImageItems" type="tns:ImageItemsType" minOccurs="0"/>
+				<xs:element name="TextItems" type="tns:TextItemsType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VideoItemsType">
+		<xs:sequence>
+			<xs:element name="VideoItem" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:VideoDescriptionType">
+							<xs:attribute name="Language" type="xs:language"/>
+							<xs:attribute name="Caption" type="xs:string"/>
+							<xs:attribute name="Removal" type="xs:boolean" default="false"/>
+							<xs:attribute name="Version" type="xs:string"/>
+							<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+							<xs:attribute name="CreatorID" type="xs:string"/>
+							<xs:attribute name="LastModifyDateTime" type="xs:dateTime"/>
+							<xs:attribute name="LastModifierID" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VideoDescriptionType">
+		<xs:sequence>
+			<xs:element name="VideoFormat" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:VideoItemType">
+							<xs:attribute name="ContentID" type="xs:string"/>
+							<xs:attribute name="Title" type="xs:string"/>
+							<xs:attribute name="Author" type="xs:string"/>
+							<xs:attribute name="CopyrightNotice" type="xs:string"/>
+							<xs:attribute name="CopyrightOwner" type="xs:string"/>
+							<xs:attribute name="CopyrightStart" type="xs:string"/>
+							<xs:attribute name="CopyrightEnd" type="xs:string"/>
+							<xs:attribute name="EffectiveStart" type="xs:string"/>
+							<xs:attribute name="EffectiveEnd" type="xs:string"/>
+							<xs:attribute name="ApplicableStart" type="xs:string"/>
+							<xs:attribute name="ApplicableEnd" type="xs:string"/>
+							<xs:attribute name="RecordID" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Category" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="VideoItemType">
+		<xs:sequence>
+			<xs:element name="URL" type="xs:anyURI" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="UnitOfMeasureCode" type="xs:string"/>
+		<xs:attribute name="Width" type="xs:positiveInteger"/>
+		<xs:attribute name="Height" type="xs:positiveInteger"/>
+		<xs:attribute name="BitRate" type="xs:positiveInteger"/>
+		<xs:attribute name="Length" type="xs:positiveInteger"/>
+		<xs:attribute name="Language" type="xs:language"/>
+		<xs:attribute name="Format" type="xs:string"/>
+		<xs:attribute name="FileSize" type="xs:positiveInteger"/>
+		<xs:attribute name="FileName" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ImageItemsType">
+		<xs:sequence>
+			<xs:element name="ImageItem" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:ImageDescriptionType">
+							<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+							<xs:attribute name="CreatorID" type="xs:string"/>
+							<xs:attribute name="LastModifyDateTime" type="xs:dateTime"/>
+							<xs:attribute name="LastModifierID" type="xs:string"/>
+							<xs:attribute name="Removal" type="xs:boolean" default="false"/>
+							<xs:attribute name="Version" type="xs:string"/>
+							<xs:attribute name="IsDefault" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="MoreData" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="ImageDescriptionType">
+		<xs:sequence>
+			<xs:element name="ImageFormat" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:ImageItemType">
+							<xs:attribute name="ContentID" type="xs:string"/>
+							<xs:attribute name="Title" type="xs:string"/>
+							<xs:attribute name="Author" type="xs:string"/>
+							<xs:attribute name="CopyrightNotice" type="xs:string"/>
+							<xs:attribute name="CopyrightOwner" type="xs:string"/>
+							<xs:attribute name="CopyrightStart" type="xs:string"/>
+							<xs:attribute name="CopyrightEnd" type="xs:string"/>
+							<xs:attribute name="EffectiveStart" type="xs:string"/>
+							<xs:attribute name="EffectiveEnd" type="xs:string"/>
+							<xs:attribute name="ApplicableStart" type="xs:string"/>
+							<xs:attribute name="ApplicableEnd" type="xs:string"/>
+							<xs:attribute name="RecordID" type="xs:string"/>
+							<xs:attribute name="Language" type="xs:language"/>
+							<xs:attribute name="Format" type="xs:string"/>
+							<xs:attribute name="FileName" type="xs:string"/>
+							<xs:attribute name="FileSize" type="xs:positiveInteger"/>
+							<xs:attribute name="DimensionCategory" type="xs:string"/>
+							<xs:attribute name="IsOriginalIndicator" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:FormattedTextTextType">
+							<xs:attribute name="Caption" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Category" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ImageItemType">
+		<xs:sequence>
+			<xs:element name="URL" type="xs:anyURI" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="UnitOfMeasureCode" type="xs:string"/>
+		<xs:attribute name="Width" type="xs:positiveInteger"/>
+		<xs:attribute name="Height" type="xs:positiveInteger"/>
+	</xs:complexType>
+	<xs:complexType name="TextItemsType">
+		<xs:sequence>
+			<xs:element name="TextItem" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:TextDescriptionType">
+							<xs:attribute name="CreateDateTime" type="xs:dateTime"/>
+							<xs:attribute name="CreatorID" type="xs:string"/>
+							<xs:attribute name="LastModifyDateTime" type="xs:dateTime"/>
+							<xs:attribute name="LastModifierID" type="xs:string"/>
+							<xs:attribute name="Removal" type="xs:boolean" default="false"/>
+							<xs:attribute name="Version" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="MoreData" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="TextDescriptionType">
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Description" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="tns:FormattedTextTextType">
+								<xs:attribute name="ListItem" type="xs:integer"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="URL" type="xs:anyURI" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Category" type="xs:string"/>
+		<xs:attribute name="ContentID" type="xs:string"/>
+		<xs:attribute name="Title" type="xs:string"/>
+		<xs:attribute name="Author" type="xs:string"/>
+		<xs:attribute name="CopyrightNotice" type="xs:string"/>
+		<xs:attribute name="CopyrightOwner" type="xs:string"/>
+		<xs:attribute name="CopyrightStart" type="xs:string"/>
+		<xs:attribute name="CopyrightEnd" type="xs:string"/>
+		<xs:attribute name="EffectiveStart" type="xs:string"/>
+		<xs:attribute name="EffectiveEnd" type="xs:string"/>
+		<xs:attribute name="ApplicableStart" type="xs:string"/>
+		<xs:attribute name="ApplicableEnd" type="xs:string"/>
+		<xs:attribute name="RecordID" type="xs:string"/>
+		<xs:attribute name="Language" type="xs:language"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfUnitInfoTypeService">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RelativePosition" type="tns:RelativePositionType" minOccurs="0"/>
+						<xs:element name="OperationSchedules" type="tns:ArrayOfOperationSchedulesPlusChargeTypeOperationSchedule" minOccurs="0"/>
+						<xs:element name="MultimediaDescriptions" type="tns:MultimediaDescriptionsType" minOccurs="0"/>
+						<xs:element name="Features" type="tns:ArrayOfFeaturesTypeFeature" minOccurs="0"/>
+						<xs:element name="DescriptiveText" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="Included" type="xs:boolean"/>
+					<xs:attribute name="Code" type="xs:string"/>
+					<xs:attribute name="BusinessServiceCode" type="xs:string"/>
+					<xs:attribute name="ExistsCode" type="xs:string"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="AvailableToAnyGuest" type="xs:boolean"/>
+					<xs:attribute name="InvCode" type="xs:string"/>
+					<xs:attribute name="ProximityCode" type="xs:string"/>
+					<xs:attribute name="MealPlanCode" type="xs:string"/>
+					<xs:attribute name="Quantity" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="Sort" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="MeetingRoomCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RelativePositionType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:TransportationsType">
+				<xs:attribute name="Direction" type="xs:string"/>
+				<xs:attribute name="Distance" type="xs:string"/>
+				<xs:attribute name="DistanceUnitName" type="tns:DistanceUnitNameType"/>
+				<xs:attribute name="UnitOfMeasureCode" type="xs:string"/>
+				<xs:attribute name="Nearest" type="xs:boolean"/>
+				<xs:attribute name="IndexPointCode" type="xs:string"/>
+				<xs:attribute name="Name" type="xs:string"/>
+				<xs:attribute name="PrimaryIndicator" type="xs:boolean"/>
+				<xs:attribute name="ToFrom">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="ToFacility"/>
+							<xs:enumeration value="FromFacility"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="ApproximateDistanceInd" type="xs:boolean"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TransportationsType">
+		<xs:sequence>
+			<xs:element name="Transportations" type="tns:ArrayOfTransportationTypeTransportation" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfTransportationTypeTransportation">
+		<xs:sequence>
+			<xs:element name="Transportation" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MultimediaDescriptions" type="tns:MultimediaDescriptionsType" minOccurs="0"/>
+						<xs:element name="OperationSchedules" type="tns:OperationSchedulesType" minOccurs="0"/>
+						<xs:element name="DescriptiveText" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="NotificationRequired" type="xs:string"/>
+					<xs:attribute name="TransportationCode" type="xs:string"/>
+					<xs:attribute name="ChargeUnit" type="xs:string"/>
+					<xs:attribute name="Included" type="xs:boolean"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="Description" type="xs:string"/>
+					<xs:attribute name="TypicalTravelTime" type="xs:string"/>
+					<xs:attribute name="Amount" type="xs:decimal"/>
+					<xs:attribute name="ExistsCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OperationSchedulesType">
+		<xs:sequence>
+			<xs:element name="OperationSchedule" type="tns:OperationScheduleType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Start" type="xs:string"/>
+		<xs:attribute name="Duration" type="xs:string"/>
+		<xs:attribute name="End" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="OperationScheduleType">
+		<xs:sequence>
+			<xs:element name="OperationTimes" type="tns:ArrayOfOperationScheduleTypeOperationTime" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Start" type="xs:string"/>
+		<xs:attribute name="Duration" type="xs:string"/>
+		<xs:attribute name="End" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfOperationScheduleTypeOperationTime">
+		<xs:sequence>
+			<xs:element name="OperationTime" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="Mon" type="xs:boolean"/>
+					<xs:attribute name="Tue" type="xs:boolean"/>
+					<xs:attribute name="Weds" type="xs:boolean"/>
+					<xs:attribute name="Thur" type="xs:boolean"/>
+					<xs:attribute name="Fri" type="xs:boolean"/>
+					<xs:attribute name="Sat" type="xs:boolean"/>
+					<xs:attribute name="Sun" type="xs:boolean"/>
+					<xs:attribute name="Start" type="xs:string"/>
+					<xs:attribute name="Duration" type="xs:string"/>
+					<xs:attribute name="End" type="xs:string"/>
+					<xs:attribute name="AdditionalOperationInfoCode" type="xs:string"/>
+					<xs:attribute name="Frequency" type="xs:string"/>
+					<xs:attribute name="Text" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OperationSchedulePlusChargeType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:OperationScheduleType">
+				<xs:sequence>
+					<xs:element name="Charge" type="tns:FeeType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DistanceUnitNameType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mile"/>
+			<xs:enumeration value="Km"/>
+			<xs:enumeration value="Block"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ArrayOfOperationSchedulesPlusChargeTypeOperationSchedule">
+		<xs:sequence>
+			<xs:element name="OperationSchedule" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:OperationSchedulePlusChargeType">
+							<xs:attribute name="Name" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfFeaturesTypeFeature">
+		<xs:sequence>
+			<xs:element name="Feature" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Charge" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="Amount" type="xs:decimal"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="MultimediaDescriptions" type="tns:MultimediaDescriptionsType" minOccurs="0"/>
+						<xs:element name="DescriptiveText" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="AccessibleCode" type="xs:string"/>
+					<xs:attribute name="SecurityCode" type="xs:string"/>
+					<xs:attribute name="ExistsCode" type="xs:string"/>
+					<xs:attribute name="ProximityCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfRateRangeType">
+		<xs:sequence>
+			<xs:element name="RateRange" type="tns:RateRangeType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RateRangeType">
+		<xs:attribute name="Start" type="xs:string"/>
+		<xs:attribute name="Duration" type="xs:string"/>
+		<xs:attribute name="End" type="xs:string"/>
+		<xs:attribute name="MinRate" type="xs:decimal"/>
+		<xs:attribute name="MaxRate" type="xs:decimal"/>
+		<xs:attribute name="FixedRate" type="xs:decimal"/>
+		<xs:attribute name="FullRate" type="xs:decimal"/>
+		<xs:attribute name="RateTimeUnit" type="tns:TimeUnitType"/>
+		<xs:attribute name="MinRent" type="xs:decimal"/>
+		<xs:attribute name="MaxRent" type="xs:decimal"/>
+		<xs:attribute name="FixedRent" type="xs:decimal"/>
+		<xs:attribute name="FullRent" type="xs:decimal"/>
+		<xs:attribute name="MinFees" type="xs:decimal"/>
+		<xs:attribute name="MaxFees" type="xs:decimal"/>
+		<xs:attribute name="FixedFees" type="xs:decimal"/>
+		<xs:attribute name="FullFees" type="xs:decimal"/>
+		<xs:attribute name="MinTax" type="xs:decimal"/>
+		<xs:attribute name="MaxTax" type="xs:decimal"/>
+		<xs:attribute name="FixedTax" type="xs:decimal"/>
+		<xs:attribute name="FullTax" type="xs:decimal"/>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfEVRN_PoliciesTypePolicy">
+		<xs:sequence>
+			<xs:element name="Policy" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PolicyInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Description" type="tns:ParagraphType" minOccurs="0"/>
+								</xs:sequence>
+								<xs:attribute name="CheckInTime" type="xs:string"/>
+								<xs:attribute name="CheckOutTime" type="xs:string"/>
+								<xs:attribute name="SmokingAllowed" type="xs:boolean" default="false"/>
+								<xs:attribute name="TotalGuestCount" type="xs:nonNegativeInteger"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PetsPolicies" type="tns:PetsPoliciesType" minOccurs="0"/>
+						<xs:element name="StayRequirements" type="tns:ArrayOfStayRequirementType" minOccurs="0"/>
+						<xs:element name="CommissionPolicies" type="tns:CommissionPoliciesType" minOccurs="0"/>
+						<xs:element name="CancelPolicy" type="tns:CancelPenaltiesType" minOccurs="0"/>
+						<xs:element name="RentalAgreement" type="tns:ArrayOfParagraphType" minOccurs="0"/>
+						<xs:element name="GuaranteePaymentPolicy" type="tns:ArrayOfRequiredPaymentsTypeGuaranteePayment" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="DefaultValidBookingMinOffset" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="Start" type="xs:string"/>
+					<xs:attribute name="Duration" type="xs:string"/>
+					<xs:attribute name="End" type="xs:string"/>
+					<xs:attribute name="Code" type="xs:string"/>
+					<xs:attribute name="CodeDetail" type="xs:string"/>
+					<xs:attribute name="LastUpdated" type="xs:dateTime"/>
+					<xs:attribute name="Mon" type="xs:boolean"/>
+					<xs:attribute name="Tue" type="xs:boolean"/>
+					<xs:attribute name="Weds" type="xs:boolean"/>
+					<xs:attribute name="Thur" type="xs:boolean"/>
+					<xs:attribute name="Fri" type="xs:boolean"/>
+					<xs:attribute name="Sat" type="xs:boolean"/>
+					<xs:attribute name="Sun" type="xs:boolean"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfStayRequirementType">
+		<xs:sequence>
+			<xs:element name="StayRequirement" type="tns:StayRequirementType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StayRequirementType">
+		<xs:sequence>
+			<xs:element name="Description" type="tns:ParagraphType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Mon" type="xs:boolean"/>
+		<xs:attribute name="Tue" type="xs:boolean"/>
+		<xs:attribute name="Weds" type="xs:boolean"/>
+		<xs:attribute name="Thur" type="xs:boolean"/>
+		<xs:attribute name="Fri" type="xs:boolean"/>
+		<xs:attribute name="Sat" type="xs:boolean"/>
+		<xs:attribute name="Sun" type="xs:boolean"/>
+		<xs:attribute name="MinLOS" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="MaxLOS" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="StayContext">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Checkin"/>
+					<xs:enumeration value="Checkout"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CommissionPoliciesType">
+		<xs:sequence>
+			<xs:element name="CommissionPolicy" type="tns:CommissionPolicyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="MinCommissionPercent" type="xs:decimal"/>
+		<xs:attribute name="MaxCommissionPercent" type="xs:decimal"/>
+	</xs:complexType>
+	<xs:complexType name="UnitReviewsType">
+		<xs:sequence>
+			<xs:element name="UnitReview" type="tns:UnitReviewType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PropertyManagerReview" type="tns:PropertyManagerReviewType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitReviewType">
+		<xs:sequence>
+			<xs:element name="ReviewScore" type="tns:ReviewScoreType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReviewComment" type="tns:ReviewCommentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ManagerResponse" type="tns:ManagerResponseType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Title" type="xs:string"/>
+		<xs:attribute name="ReviewedDate" type="xs:dateTime"/>
+		<xs:attribute name="LastUpdated" type="xs:dateTime"/>
+		<xs:attribute name="ReviewerName" type="xs:string"/>
+		<xs:attribute name="ReviewerCity" type="xs:string"/>
+		<xs:attribute name="ReviewerState" type="xs:string"/>
+		<xs:attribute name="ReviewerCountry" type="xs:string"/>
+		<xs:attribute name="CheckIn" type="xs:date"/>
+		<xs:attribute name="CheckOut" type="xs:date"/>
+	</xs:complexType>
+	<xs:complexType name="ReviewScoreType">
+		<xs:attribute name="Score" type="xs:double"/>
+		<xs:attribute name="CategoryID" type="xs:int"/>
+		<xs:attribute name="CategoryName" type="xs:string"/>
+		<xs:attribute name="CategoryType" type="xs:unsignedByte"/>
+		<xs:attribute name="SortOrder" type="xs:int"/>
+	</xs:complexType>
+	<xs:complexType name="ReviewCommentType">
+		<xs:attribute name="Comment" type="xs:string"/>
+		<xs:attribute name="CategoryID" type="xs:int"/>
+		<xs:attribute name="CategoryName" type="xs:string"/>
+		<xs:attribute name="CategoryType" type="xs:byte"/>
+		<xs:attribute name="SortOrder" type="xs:int"/>
+	</xs:complexType>
+	<xs:complexType name="ManagerResponseType">
+		<xs:attribute name="ResponseDate" type="xs:dateTime"/>
+		<xs:attribute name="ResponseTitle" type="xs:string"/>
+		<xs:attribute name="Comment" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="PropertyManagerReviewType">
+		<xs:sequence>
+			<xs:element name="AverageReviewScore" type="tns:ReviewScoreType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ReviewCount" type="xs:int"/>
+	</xs:complexType>
+	<xs:complexType name="PromotionsType">
+		<xs:sequence>
+			<xs:element name="RateDiscount" type="tns:RateDiscountType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="LastUpdated" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:element name="EVRN_UnitSearchRQ">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRQType">
+					<xs:sequence>
+						<xs:element name="Criteria" type="tns:UnitSearchCriteriaType" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="MaxResponses" type="xs:positiveInteger"/>
+					<xs:attribute name="SortOrder" type="xs:string"/>
+					<xs:attribute name="SendRateDetails" type="xs:boolean" default="true"/>
+					<xs:attribute name="SendUnitSummary" type="xs:boolean" default="true"/>
+					<xs:attribute name="ResponseType" default="PropertyList">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="PropertyList"/>
+								<xs:enumeration value="AreaList"/>
+								<xs:enumeration value="PropertyRateList"/>
+								<xs:enumeration value="RateInfoDetails"/>
+								<xs:enumeration value="ProfilePrefs"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="UnitSearchCriteriaType">
+		<xs:sequence>
+			<xs:element name="Criterion" type="tns:UnitSearchCriterionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="AvailableOnlyIndicator" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="UnitSearchCriterionType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:ItemSearchCriterionType">
+				<xs:sequence>
+					<xs:element name="UnitAmenity" type="tns:UnitAmenityType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="StayDateRange" type="tns:DateTimeSpanType" minOccurs="0"/>
+					<xs:element name="RateRange" minOccurs="0">
+						<xs:complexType>
+							<xs:attribute name="RoomStayCandidateRPH" type="xs:string"/>
+							<xs:attribute name="MinRate" type="xs:decimal"/>
+							<xs:attribute name="MaxRate" type="xs:decimal"/>
+							<xs:attribute name="FixedRate" type="xs:decimal"/>
+							<xs:attribute name="FullRate" type="xs:decimal"/>
+							<xs:attribute name="RateTimeUnit" type="tns:TimeUnitType"/>
+							<xs:attribute name="MinRent" type="xs:decimal"/>
+							<xs:attribute name="MaxRent" type="xs:decimal"/>
+							<xs:attribute name="FixedRent" type="xs:decimal"/>
+							<xs:attribute name="FullRent" type="xs:decimal"/>
+							<xs:attribute name="MinFees" type="xs:decimal"/>
+							<xs:attribute name="MaxFees" type="xs:decimal"/>
+							<xs:attribute name="FixedFees" type="xs:decimal"/>
+							<xs:attribute name="FullFees" type="xs:decimal"/>
+							<xs:attribute name="MinTax" type="xs:decimal"/>
+							<xs:attribute name="MaxTax" type="xs:decimal"/>
+							<xs:attribute name="FixedTax" type="xs:decimal"/>
+							<xs:attribute name="FullTax" type="xs:decimal"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="UnitStayCandidate" type="tns:UnitStayCandidateType" minOccurs="0"/>
+					<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+					<xs:element name="LastMinuteDiscountRange" type="tns:LastMinuteDiscountRangeType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ItemSearchCriterionType">
+		<xs:sequence>
+			<xs:element name="Position" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Latitude" type="xs:string"/>
+					<xs:attribute name="Longitude" type="xs:string"/>
+					<xs:attribute name="Altitude" type="xs:string"/>
+					<xs:attribute name="AltitudeUnitOfMeasureCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address" minOccurs="0">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:AddressType">
+							<xs:attribute name="SameCountryInd" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnitRef" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+					<xs:attribute name="UnitCode" type="xs:string"/>
+					<xs:attribute name="UnitName" type="xs:string"/>
+					<xs:attribute name="InfoSource" type="xs:string"/>
+					<xs:attribute name="UnitClassCode" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Radius" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Distance" type="xs:string"/>
+					<xs:attribute name="DistanceMeasure" type="xs:string"/>
+					<xs:attribute name="Direction" type="xs:string"/>
+					<xs:attribute name="DistanceMax" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Region" type="tns:RegionType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ExactMatch" type="xs:boolean"/>
+		<xs:attribute name="ImportanceType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Mandatory"/>
+					<xs:enumeration value="High"/>
+					<xs:enumeration value="Medium"/>
+					<xs:enumeration value="Low"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Ranking" type="xs:integer"/>
+	</xs:complexType>
+	<xs:complexType name="RegionType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:RegionIdentifierType">
+				<xs:sequence>
+					<xs:element name="CountryCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="PostalCode" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RegionIdentifierType">
+		<xs:attribute name="RegionCode" type="xs:int"/>
+		<xs:attribute name="RegionName" type="xs:string"/>
+		<xs:attribute name="RegionFriendlyName" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="EVRN_UnitSearchRS">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRSType">
+					<xs:sequence>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+							<xs:element name="Criteria" type="tns:UnitSearchCriteriaType" minOccurs="0"/>
+							<xs:element name="Areas" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Area" type="tns:SearchAreaType" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="PlaceHolder" type="xs:int"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Units" minOccurs="0">
+								<xs:complexType mixed="false">
+									<xs:complexContent mixed="false">
+										<xs:extension base="tns:UnitsType">
+											<xs:attribute name="moredata" type="xs:boolean"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+							<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+							<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="SearchAreaType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:AreaType">
+				<xs:sequence>
+					<xs:element name="UnitCount" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:attribute name="InfoSource" type="xs:string"/>
+							<xs:attribute name="Count" type="xs:int"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="ZipList">
+					<xs:simpleType>
+						<xs:list itemType="xs:string"/>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="MinDiscount" type="xs:double"/>
+				<xs:attribute name="MaxDiscount" type="xs:double"/>
+				<xs:attribute name="StartDate" type="xs:date"/>
+				<xs:attribute name="EndDate" type="xs:date"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AreaType">
+		<xs:sequence>
+			<xs:element name="AreaDescription" type="tns:ParagraphType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="AreaID" type="xs:string"/>
+		<xs:attribute name="City" type="xs:string"/>
+		<xs:attribute name="CityCode" type="xs:string"/>
+		<xs:attribute name="StateProv" type="xs:string"/>
+		<xs:attribute name="StateProvCode" type="xs:string"/>
+		<xs:attribute name="CountryCode" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="UnitsType">
+		<xs:sequence>
+			<xs:element name="Unit" type="tns:UnitValueMatchType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EVRN_UnitCalendarAvailRQ">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRQType">
+					<xs:sequence>
+						<xs:element name="UnitRef" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+								<xs:attribute name="UnitCode" type="xs:string"/>
+								<xs:attribute name="UnitName" type="xs:string"/>
+								<xs:attribute name="InfoSource" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="CalendarDateRange" type="tns:DateTimeSpanType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EVRN_UnitCalendarAvailRS">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRSType">
+					<xs:sequence>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+							<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+							<xs:element name="UnitCalendarAvailSegments" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UnitCalendarAvailSegment" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DailyAvailability" type="xs:string" minOccurs="0"/>
+													<xs:element name="StayRequirements" type="tns:ArrayOfStayRequirementType" minOccurs="0"/>
+												</xs:sequence>
+												<xs:attribute name="StartDate" type="xs:date"/>
+												<xs:attribute name="EndDate" type="xs:date"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+									<xs:attribute name="UnitCode" type="xs:string"/>
+									<xs:attribute name="UnitName" type="xs:string"/>
+									<xs:attribute name="InfoSource" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EVRN_UnitStayRQ">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRQType">
+					<xs:sequence>
+						<xs:element name="UnitStay" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="UnitRef" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+											<xs:attribute name="UnitCode" type="xs:string"/>
+											<xs:attribute name="UnitName" type="xs:string"/>
+											<xs:attribute name="InfoSource" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="StayDateRange" type="tns:DateTimeSpanType" minOccurs="0"/>
+									<xs:element name="GuestCounts" type="tns:GuestCountType" minOccurs="0"/>
+									<xs:element name="DepositPayments" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="SendData" type="xs:boolean"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CancelPenalties" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="SendData" type="xs:boolean"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="BasicUnitInfo" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="SendData" type="xs:boolean"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="RentalAgreement" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="SendData" type="xs:boolean"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Pets" type="tns:PetsPoliciesType" minOccurs="0"/>
+									<xs:element name="AdditionalCharges" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="AdditionalCharge" type="tns:AdditionalChargeType" minOccurs="0" maxOccurs="unbounded"/>
+											</xs:sequence>
+											<xs:attribute name="OptionalChargesIndicator">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="IncludeAll"/>
+														<xs:enumeration value="ExcludeAll"/>
+														<xs:enumeration value="IncludeSpecified"/>
+														<xs:enumeration value="IncludeDefault"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EVRN_UnitStayRS">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRSType">
+					<xs:sequence>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+							<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+							<xs:element name="UnitStay" type="tns:UnitStayType" minOccurs="0"/>
+							<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+							<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EVRN_UnitResRQ" type="tns:UnitResRequestType"/>
+	<xs:element name="EVRN_UnitResRS" type="tns:UnitResResponseType"/>
+	<xs:element name="EVRN_UnitReadRQ">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRQType">
+					<xs:sequence>
+						<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+						<xs:element name="ReadRequests" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:choice minOccurs="0" maxOccurs="unbounded">
+										<xs:element name="ReadRequest" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="UniqueID" type="tns:UniqueID_Type" minOccurs="0"/>
+													<xs:element name="Verification" type="tns:VerificationType" minOccurs="0"/>
+												</xs:sequence>
+												<xs:attribute name="HistoryRequestedInd" type="xs:boolean"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="GlobalReservationReadRequest" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TravelerName" type="tns:PersonNameType" minOccurs="0"/>
+												</xs:sequence>
+												<xs:attribute name="Start" type="xs:string"/>
+												<xs:attribute name="Duration" type="xs:string"/>
+												<xs:attribute name="End" type="xs:string"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ReqRespVersion" type="xs:string"/>
+					<xs:attribute name="ReservationType" type="xs:string"/>
+					<xs:attribute name="ReturnListIndicator" type="xs:boolean"/>
+					<xs:attribute name="MoreIndicator" type="xs:boolean"/>
+					<xs:attribute name="MoreDataEchoToken" type="xs:string"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="VerificationType">
+		<xs:sequence>
+			<xs:element name="PersonName" minOccurs="0">
+				<xs:complexType mixed="false">
+					<xs:complexContent mixed="false">
+						<xs:extension base="tns:PersonNameType">
+							<xs:attribute name="PartialName" type="xs:boolean"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Email" type="tns:EmailType" minOccurs="0"/>
+			<xs:element name="TelephoneInfo" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="ShareSynchInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="ShareMarketInd">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Yes"/>
+								<xs:enumeration value="No"/>
+								<xs:enumeration value="Inherit"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="PhoneLocationType" type="xs:string"/>
+					<xs:attribute name="PhoneTechType" type="xs:string"/>
+					<xs:attribute name="PhoneUseType" type="xs:string"/>
+					<xs:attribute name="CountryAccessCode" type="xs:string"/>
+					<xs:attribute name="AreaCityCode" type="xs:string"/>
+					<xs:attribute name="PhoneNumber" type="xs:string"/>
+					<xs:attribute name="Extension" type="xs:string"/>
+					<xs:attribute name="PIN" type="xs:string"/>
+					<xs:attribute name="FormattedInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="DefaultInd" type="xs:boolean" default="false"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PaymentCard" type="tns:PaymentCardType" minOccurs="0"/>
+			<xs:element name="AddressInfo" type="tns:AddressInfoType" minOccurs="0"/>
+			<xs:element name="CustLoyalty" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ProgramID" type="xs:string"/>
+					<xs:attribute name="MembershipID" type="xs:string"/>
+					<xs:attribute name="TravelSector" type="xs:string"/>
+					<xs:attribute name="RPH" type="xs:string"/>
+					<xs:attribute name="VendorCode">
+						<xs:simpleType>
+							<xs:list itemType="xs:string"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Vendor" type="tns:CompanyNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReservationTimeSpan" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="Start" type="xs:string"/>
+					<xs:attribute name="Duration" type="xs:string"/>
+					<xs:attribute name="End" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AssociatedQuantity" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="URI" type="xs:anyURI"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StartLocation" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:LocationType">
+							<xs:attribute name="AssociatedDateTime" type="xs:dateTime"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EndLocation" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:LocationType">
+							<xs:attribute name="AssociatedDateTime" type="xs:dateTime"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EVRN_UnitInquiryRQ">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRQType">
+					<xs:sequence>
+						<xs:element name="InquiryRequests" type="tns:ArrayOfInquiryRequestType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ArrayOfInquiryRequestType">
+		<xs:sequence>
+			<xs:element name="InquiryRequest" type="tns:InquiryRequestType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InquiryRequestType">
+		<xs:sequence>
+			<xs:element name="UnitRef" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="PropertyManagerCode" type="xs:string"/>
+					<xs:attribute name="UnitCode" type="xs:string"/>
+					<xs:attribute name="UnitName" type="xs:string"/>
+					<xs:attribute name="InfoSource" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Contact" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="tns:PersonNameType" minOccurs="0"/>
+						<xs:element name="Email" type="tns:EmailType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Telephone" type="tns:TelephoneInfoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="PreferredContactMethod" type="tns:PreferredContactMethodType"/>
+					<xs:attribute name="IPAddress" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Message" type="tns:FormattedTextTextType" minOccurs="0"/>
+			<xs:element name="Source" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="UnitDescriptionURL" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PreferredContactMethodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Email"/>
+			<xs:enumeration value="Telephone"/>
+			<xs:enumeration value="NoPreference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="EVRN_UnitInquiryRS">
+		<xs:complexType mixed="false">
+			<xs:complexContent mixed="false">
+				<xs:extension base="tns:EVRN_BaseRSType">
+					<xs:sequence>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+							<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+							<xs:element name="TPA_Extensions" type="tns:TPA_Extensions_Type" minOccurs="0"/>
+							<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UnitDescriptiveInfoStream">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element name="EVRN_UnitDescriptiveInfoRS">
+					<xs:complexType mixed="false">
+						<xs:complexContent mixed="false">
+							<xs:extension base="tns:EVRN_BaseRSType">
+								<xs:sequence>
+									<xs:choice minOccurs="0" maxOccurs="unbounded">
+										<xs:element name="Warnings" type="tns:WarningsType" minOccurs="0"/>
+										<xs:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+										<xs:element name="Success" type="tns:SuccessType" minOccurs="0"/>
+										<xs:element name="UnitDescriptiveContents" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="UnitDescriptiveContent" type="tns:UnitDescriptiveContentType" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+												<xs:attribute name="CachedData" type="xs:boolean"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

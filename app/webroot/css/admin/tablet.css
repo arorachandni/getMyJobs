@@ -1,0 +1,59 @@
+@media only screen and (max-width:979px) {
+.container{ width:98%; margin:0 auto;}
+.bannerSearch{ width:100%;}
+.banlocationInp{ width:28%;}
+.checkInInp{ width:9%;}
+.loginBox{ top:15%;}
+
+.likesbanner li{ height:350px;}
+.likeslideTxt{ height:350px;}
+
+.PromobanMain ul li{ height:400px;}
+.pramoBanTxt{ height:400px;}
+.videoCon {height:350px;}
+.footer-L{ width:27%;}
+.footer-R{width:23%;}
+.mapBg img{ width:100%;}
+.guestcount span{ font-size:18px;}
+.guestList ul li{ padding:10px;}
+.browsetpHd{ font-size:16px;}
+.browhowitList ul li a{ font-size:13px;}
+.footerfollow ul li{ width:23%;}
+.contfld-R{ width:70%;}
+.termsNav ul li a{ padding:15px 12px;}
+.howitarbg{ background-size:100%; padding-top:220px;}
+.howleftimg img{ width:180px; margin:0 auto;}
+.howmidimg img{ width:180px; margin:0 auto;}
+.howrightimg img{ width:180px; margin:0 auto;}
+.howit-left{ width:26%;}
+.howit-mid{ width:30%; }
+.howit-right{ width:36%;}
+.howleftimg{ margin-top:0;}
+.howmidimg{ margin-top:12px;}
+.howitHd{ font-size:14px;}
+.howitBg{ height:662px;}
+.closeImg{ padding:20px 0;}
+/*----------------Start of Search Listing----------------*/
+.countryInp{ width:65%; margin-bottom:10px;}
+.calndrInp{ width:35%; margin-bottom:10px;}
+.calndrInp2{ width:35%; margin-bottom:10px; border-left:#c4c4c4 solid 1px;}
+.filtsrchBtn{ width:45%;}
+.personInp{ width:20%;}
+.roomtype-L{ width:100%; text-align:center; display:block;}
+.roomtype-R{ padding:13px 5px; width:32.3%;}
+.priceRangeBx-L{ width:25%;}
+.priceRangeBx-R{ width:75%;}
+.srchlist-img{ height:180px;}
+.travlName{ font-size:12px; width:48%; overflow:hidden; height:33px;}
+.animititle{ width:100%; font-size:13px; font-family: 'Ubuntu-Bold';}
+.searchListmap{ width:40%;}
+.searchListright{ width:60%;}
+.amini-Left{width:33%;}
+.animititle-hide{ display:none;}
+.modifysrchBx{ margin-top:-10px;}
+
+}
+@media only screen and (min-width:768px) {
+.topnav > ul{ display:inline-block !important;}
+.about-topnav > ul{ display:inline-block !important;}
+}
