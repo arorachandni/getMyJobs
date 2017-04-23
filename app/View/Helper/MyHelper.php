@@ -137,7 +137,7 @@ class MyHelper extends AppHelper {
 							);
             return $countPost;
         }
-         public function getEventCommentCount($event_id=NULL) { 
+        public function getEventCommentCount($event_id=NULL) { 
 			$countUser = '';
 			App::import('Model', 'Post');
 			$this->Post = new Post();
@@ -175,6 +175,16 @@ class MyHelper extends AppHelper {
 		$cateName = $this->Subcategory->find('first',array('conditions' =>array('Subcategory.id' => $subcat_id)));
         return $cateName['Subcategory']['subcat_name'];
 	}
+	function getKnows($id=NULL){
+		$countUser = '';
+		App::import('Model', 'Know');
+		$this->Knows = new Know();
+		$know = $this->Knows->find('first',array('conditions' =>array('Know.id' => $id)));
+        if(!empty($know['Know']['source_name'])){
+			$value=$know['Know']['source_name'];
+		} else { $value='';}
+		return $value;
+	}
 	function getSkill($skill_string=NULL){
 		$countUser = '';
 		App::import('Model', 'Skill');
@@ -186,7 +196,6 @@ class MyHelper extends AppHelper {
 				
         return $skillList;
 	}
-	
 	function getCommentsOnMimePost($post_id=NULL){
 		$countUser = '';
 		App::import('Model', 'Comment');
@@ -210,10 +219,6 @@ class MyHelper extends AppHelper {
 							);
         return $countReplyOnComment;
 	}
-	
-	
-	
-	
 	public function fetchUserImage($user_id) {
 		App::import('Model', 'Upload');
 		$this->Upload = new Upload();
@@ -226,15 +231,6 @@ class MyHelper extends AppHelper {
 		}
 		
 	}
-	## FUNCTION FOR FETCHING ABOUT US CONTENT FOR FOOTER
-
-	public function fetchAdminDetail() {
-		App::import('Model', 'Admin');
-		$this->Admin = new Admin();
-		$data = $this->Admin->find('first');
-		return $data;
-	}
-
 	public function userInfo($user_id = null) {
 		App::import('Model', 'User');
 		$this->User = new User();
@@ -248,6 +244,7 @@ class MyHelper extends AppHelper {
 		$stateArr = $this->State->find('list', array('fields'=> array('id','state_name')));
 		return $stateArr;
 	}
+	
 	public function fetchCities() {
 		App::import('Model', 'City');
 		$this->City = new City();
@@ -259,6 +256,25 @@ class MyHelper extends AppHelper {
 		$this->Country = new country();
 		$CountryArr = $this->Country->find('list', array('fields'=> array('iso','name')));
 		return $CountryArr;
+	}
+	public function fetchCategories() {
+		App::import('Model', 'Category');
+		$this->Category = new Category();
+		$CategoryArr = $this->Category->find('list', array('fields'=> array('id','category_name')));
+		return $CategoryArr;
+	}
+	public function fetchSubCategories() {
+		App::import('Model', 'Subcategory');
+		$this->Subcategory = new Subcategory();
+		$CategoryArr = $this->Subcategory->find('list', array('fields'=> array('id','category_name')));
+		return $CategoryArr;
+	}
+	
+	public function fetchCountryName($country_id=NULL) {
+		App::import('Model', 'Country');
+		$this->Country = new country();
+		$CountryArr = $this->Country->find('first', array('conditions'=> array('Country.id',$country_id)));
+		return $CountryArr['Country']['name'];
 	}
 	public function fetchCountriesforuser() {
 		App::import('Model', 'Country');
@@ -298,6 +314,7 @@ class MyHelper extends AppHelper {
 							);
             return $countUser;
         }
+		
 	
 }
 ?>

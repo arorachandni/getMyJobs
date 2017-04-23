@@ -34,7 +34,7 @@
             echo $this->Html->script('admin/datetimepicker/datepicker');
             echo $this->Html->script('admin/datetimepicker/jquery.timepicker');
 			echo $this->Html->css('bootstrap/bootstrap.min');
-			echo $this->Html->css('jquery/jquery.min');
+			echo $this->Html->script('jquery/jquery.min');
 			
 			echo $this->Html->script('bootstrap/bootstrap.min');
 			

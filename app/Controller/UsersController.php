@@ -23,13 +23,6 @@ class UsersController extends AppController {
 	    $this->layout = 'Admin/default';			
 		if (!empty($id)) {
 			//$conditions['recursive'] = -1;
-			$this->User->bindModel(array('hasOne' => array(
-					 'Upload' => array(
-            		 'className' => 'Upload',
-            		 'conditions' => array('Upload.upload_for' => 'userprofile','Upload.user_id' => $id)
-       				 )
-				)
-	 	    ));
 			$conditions['conditions'] = array( "User.id" => $id);
 			$UserDetails = $this->User->find( "first", $conditions );
 			$this->set(compact('UserDetails'));
@@ -51,8 +44,8 @@ class UsersController extends AppController {
 		}
 		$pagesize=10;
 		 
-		if (!empty($this->data['User']['iso'])) {
-		   $conditions['User.iso'] = trim($this->data['User']['iso']);
+		if (!empty($this->data['User']['usertype'])) {
+		   $conditions['User.usertype'] = trim($this->data['User']['usertype']);
 		}
 		if (!empty($this->data['User']['username'])) {
 		   $conditions['User.username LIKE'] = '%'.trim($this->data['User']['username']).'%';

@@ -37,22 +37,22 @@ class JobsController extends AppController {
 		 $this->loadModel('Job');
 		 $this->loadModel('Upload');
 		 $conditions = array();
+		
 		 if(isset($this->request->named['page'])){
 		$page=$this->request->named['page'];
 		} else {
 		$page=1;
 		}
-		$pagesize=4;
+		$pagesize=10;
 		 
-		if (!empty($this->data['Job']['iso'])) {
-		   $conditions['User.iso'] = trim($this->data['User']['iso']);
+		if (!empty($this->data['Job']['cat_id'])) {
+			
+		   $conditions['Job.category'] = trim($this->data['Job']['cat_id']);
 		}
-		if (!empty($this->data['Job']['username'])) {
-		   $conditions['User.username LIKE'] = '%'.trim($this->data['User']['username']).'%';
+		if (!empty($this->data['Job']['job_title'])) {
+		   $conditions['Job.job_title LIKE'] = '%'.trim($this->data['Job']['job_title']).'%';
 		}
-		/*if (!empty($this->data['User']['zip_code'])) {
-		   $conditions['User.zip_code'] = $this->data['User']['zip_code'];
-		} */
+		
 		$data = $this->Job->find('all',array('conditions'=>$conditions)); 
 		$total_job = count($data);
 		$this->paginate = array('order' => 'Job.id DESC', 'limit' => $pagesize);

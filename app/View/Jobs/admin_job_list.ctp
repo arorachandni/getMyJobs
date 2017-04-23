@@ -1,6 +1,18 @@
 <div class="dashmidMain">			
 	<div class="dashRight">
 		<div class="dashMid">
+		 <?php echo $this->Form->create('User',array('action'=>'admin_user_list')); ?>
+		<div class="row topHeader">
+			<div class="col-sm-4">
+			<?php 
+			 $countryArr = $this->My->fetchCategories();
+			 //pr($stateArr);die;
+			echo $this->Form->input('Category.id', array('div'=>false, 'label'=>false, 'type'=>'select','class'=>'dashInpfld validate[required]', 'maxlength'=> 50, 'required'=>false, 'options'=> $countryArr, 'empty'=> 'Search By Category')); ?>
+			</div>
+			<div class="col-sm-4"><?php echo $this->Form->text('Job.job_title', array('class' => 'testInp', 'label' => false, 'placeholder'=>'Search By job title','required' => false)); ?></div>
+			<div class="col-sm-4"><?php  echo $this->Form->submit('Search', array('div'=>false, 'label'=>false, 'class'=>'submitBtn')); ?></div>			
+	</div>
+	<?php echo $this->Form->end(); ?>
 		<table class="table table-inverse">
   <thead>
     <tr>

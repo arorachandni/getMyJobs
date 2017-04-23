@@ -583,3 +583,19 @@ text-decoration: underline #35c9ce;
 .pager .next > a, .pager .next > span {
 	float:none;
 }
+.row {
+	border: 1px solid #ccc;
+    height: auto;
+	padding:10px;
+	border-bottom:none;
+}
+.row:last-child {
+	border: 1px solid #ccc;
+    
+}
+.col-sm-1 {
+	width:1% !important;
+}
+.topHeader {
+border:none;	
+}

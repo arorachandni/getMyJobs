@@ -1,7 +1,8 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-App::uses('AppController', 'Controller'); 
+App::uses('AppController', 'Controller','File', 'Utility'); 
 App::import('Vendor', 'messages');
+
 
 
 class ApisController extends AppController {
@@ -11,7 +12,7 @@ class ApisController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		if (!empty($this->Auth))
-			$this->Auth->allowedActions = array('login','register','getCategories','getSubCategories','postJob','getSkil');
+			$this->Auth->allowedActions = array('login','register','getCategories','getSubCategories','postJob','getSkil','uploadUserProfileImage','sendProposal');
 			$this->key = 'cd521716c97d34c793e5d17ab58007c5';
 		//$this->Security->csrfCheck = false;
 	}
@@ -132,7 +133,46 @@ class ApisController extends AppController {
 		exit;
 	}
 	
-	 
+	 function uploadUserProfileImage() {
+		 if($this->request->is('post') && $this->data){
+			$this->layout='none';
+			if(empty($this->data['user_id'])){
+				$error='Please enter user id.';
+			} else if(!isset($this->request->params['form']['profileimage']['name']) || empty($this->request->params['form']['profileimage']['name'])) {
+				$error="Please upload user profile image";
+			} else {
+					$this->loadModel('User');
+					$filename = $this->request->params['form']['profileimage']['name'];
+					$file_ext = substr($filename, strripos($filename, '.')); 
+					if($file_ext=='.jpg' || $file_ext=='.jpeg' || $file_ext=='.png' || $file_ext=='.gif' || $file_ext=='.3gp' || $file_ext=='.wmv') {
+								$newfilename = uniqid('userimage-').$file_ext;
+								$imgpath = WWW_ROOT.'img/userImg/'.$newfilename;
+								$image_url='img/userImg/';
+								list($width, $height, $itype, $attr) = getimagesize($this->request->params['form']['profileimage']['tmp_name']);
+								move_uploaded_file($this->request->params['form']['profileimage']['tmp_name'],$imgpath);
+								
+								$usersuser = $this->User->find("first", array(
+										'fields' => array('User.profileImage'),
+										'conditions' => array('User.id' => $this->request->data['user_id'])
+								));
+								$oldimage=$usersuser['User']['profileImage'];
+								$file = new File(WWW_ROOT.'img/userImg/'.$oldimage, false, 0777);
+								$file->delete();
+								$data['User']['id'] = $this->request->data['user_id'];
+								$data['User']['profileImage'] = $newfilename;
+								$this->User->save($data, false);
+								$response_arry = array('error_code'=> '0','status'=> '1', 'image'=> $newfilename);
+					}
+			}
+		 } else{
+			$error='Please send parameter first';
+		}
+		if(!empty($error)){
+			$response_arry = array('error_code'=> '1','status'=> '0', 'message'=> $error);
+		}
+		echo json_encode($response_arry); 		
+		exit;
+	 }
 	
 	function postJob(){
 		
@@ -237,6 +277,80 @@ class ApisController extends AppController {
 		exit;
 	}
 	/**Skil list*/
+	
+	function sendProposal(){
+		if($this->request->is('post') && $this->data){
+			$this->layout='none';
+			if(empty($this->data['user_id'])){
+				$error='Please enter user id .';
+			} else if(empty($this->data['job_id'])){
+				$error='Please enter job id.';
+			} else if(empty($this->data['proposal'])){
+				$error='Please enter proposal.';
+			} else if(strlen($this->data['proposal']) < 150){
+				$error='Text should be greater then 150 character.';
+			} else {
+				$this->loadModel('Proposal');
+				$datetime = date('Y-m-d H:i:s');
+				$this->loadModel('Job');
+				
+				$count = $this->Proposal->find('count',
+								array('conditions' => 
+									array('Proposal.job_id' => $this->request->data['job_id'],'Proposal.user_id' => $this->request->data['user_id'])
+								)
+							);
+				  if($count==1) {
+					    $error='You have already send proposal for this job';
+						$response_arry = array('error_code'=> '1','status'=> '0', 'message'=> $error);
+						echo json_encode($response_arry); exit;						
+					}
+				$pdata = $this->Proposal->find("all", array(
+										'conditions' => array('Proposal.user_id' => $this->request->data['user_id'],'Proposal.job_id' => $this->request->data['job_id'])
+								));
+				
+				
+				$jobdata = $this->Job->find("first", array(
+										'fields' => array('Job.project_questions'),
+										'conditions' => array('Job.id' => $this->request->data['job_id'])
+								));
+				$job_question=explode("$$$",$jobdata['Job']['project_questions']);
+				if(!empty($jobdata['Job']['project_questions'])){
+					$i=1;
+					$answers=array();
+					foreach($job_question as $jobQuest){ 
+					
+						if(empty($this->data['question_'.$i])){
+							$error='Please enter the answer of question '.$i;
+							$response_arry = array('error_code'=> '1','status'=> '0', 'message'=> $error);
+							echo json_encode($response_arry); 		
+							exit;
+						} else {
+							array_push($answers,$this->data['question_'.$i]);
+							$data['Proposal']['answers'] = implode("$$$",$answers);
+						}
+						$i++;
+					}
+				}
+				
+				$data['Proposal']['user_id'] = $this->data['user_id'];
+				$data['Proposal']['job_id'] = $this->data['job_id'];
+				$data['Proposal']['proposal'] = $this->data['proposal'];
+				$data['Proposal']['created'] = $datetime;
+				$this->Proposal->save($data, false);
+				$pid=$this->Proposal->getLastInsertId();
+				$result=array();
+				$response_arry = array('message'=> 'success', 'status'=> '1', 'error'=> '0'); 
+			}
+		}else{
+			$error='Please send parameter first';
+		}
+		if(!empty($error)){
+			$response_arry = array('error_code'=> '1','status'=> '0', 'message'=> $error);
+		}
+
+		echo json_encode($response_arry); 		
+		exit;
+	}
 	
 	function getSkil() {
 		$this->loadModel('Skill');
