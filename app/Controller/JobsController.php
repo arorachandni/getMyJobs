@@ -35,7 +35,7 @@ class JobsController extends AppController {
 	public function admin_job_list(){
 		 $this->layout = 'Admin/default';
 		 $this->loadModel('Job');
-		 $this->loadModel('Upload');
+		 $this->loadModel('Proposal');
 		 $conditions = array();
 		
 		 if(isset($this->request->named['page'])){
@@ -52,7 +52,13 @@ class JobsController extends AppController {
 		if (!empty($this->data['Job']['job_title'])) {
 		   $conditions['Job.job_title LIKE'] = '%'.trim($this->data['Job']['job_title']).'%';
 		}
-		
+		$this->Job->bindModel(array('hasMany' => array(
+					 'Proposal' => array(
+            		 'className' => 'Proposal',
+            		 'conditions' => array('id' => 'Proposal.job_id')
+       				 )
+				)
+	 	    ));
 		$data = $this->Job->find('all',array('conditions'=>$conditions)); 
 		$total_job = count($data);
 		$this->paginate = array('order' => 'Job.id DESC', 'limit' => $pagesize);
@@ -61,7 +67,47 @@ class JobsController extends AppController {
 		$this->set('page',$page);
 		$this->set('pagesize',$pagesize);
 	}
-	
+	public function admin_praposal_list($id=null){
+		 $this->layout = 'Admin/default';
+		 $this->loadModel('Job');
+		 $this->loadModel('Proposal');
+		 $conditions = array();
+		
+		if (!empty($id)) {
+		
+				 if(isset($this->request->named['page'])){
+				$page=$this->request->named['page'];
+				} else {
+				$page=1;
+				}
+				$pagesize=10;
+				
+				$conditions['Proposal.job_id'] = trim($id);
+				$data = $this->Proposal->find('all',array('conditions'=>$conditions)); 
+				
+				$total_proposal = count($data);
+				$this->paginate = array('order' => 'Proposal.id DESC', 'limit' => $pagesize);
+				$this->set('praposal_list', $this->paginate('Proposal', $conditions));
+				$this->set(compact('total_proposal'));
+				$this->set('page',$page);
+				$this->set('pagesize',$pagesize);
+				
+	 } else {
+		 echo "No praposal found";
+	 }
+	}
+	/* FUNCTION FOR VIEW USER PROFILE START
+	 CREATED ON - 25 SEP 2015 */
+
+    public function admin_view_proposal($id=NULL) {
+	    $this->layout = 'Admin/default';
+		$this->loadModel('Proposal');		
+		if (!empty($id)) {
+			$conditions['conditions'] = array( "Proposal.id" => $id);
+			$ProposalDetails = $this->Proposal->find( "first", $conditions );
+			$this->set(compact('ProposalDetails'));
+    	}          
+    }
 	public function admin_email_list(){
 		 $this->layout = 'Admin/default';
 		 $this->loadModel('User');

@@ -81,6 +81,9 @@ class ExceptionRenderer {
  */
 	public $error = null;
 
+	public function notFound($error) {
+        $this->controller->redirect(array('controller' => 'errors', 'action' => 'error404'));
+    }
 /**
  * Creates the controller to perform rendering on the error response.
  * If the error is a CakeException it will be converted to either a 400 or a 500

@@ -12,7 +12,7 @@ class ApisController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		if (!empty($this->Auth))
-			$this->Auth->allowedActions = array('login','register','getCategories','getSubCategories','postJob','getSkil','uploadUserProfileImage','sendProposal');
+			$this->Auth->allowedActions = array('login','register','getCategories','getSubCategories','postJob','getSkil','uploadUserProfileImage','sendProposal','getAllJobList');
 			$this->key = 'cd521716c97d34c793e5d17ab58007c5';
 		//$this->Security->csrfCheck = false;
 	}
@@ -351,7 +351,39 @@ class ApisController extends AppController {
 		echo json_encode($response_arry); 		
 		exit;
 	}
-	
+	function getAllJobList() { 
+		$this->layout='default';
+		 $pagesize=20;
+		 $page=1;
+		 $offset=0;
+		 $this->loadModel('Job');
+		 if(!empty($this->request->query['page']) ) {
+			$page=$this->request->query['page'];
+		 }
+		$this->layout="";
+		$conditions = array();
+		if (!empty($this->request->query['cat_id'])) {
+		   $conditions['Job.category'] = $this->request->query['cat_id'];
+		}
+		if(!empty($this->request->query['pagesize'])) {
+			$pagesize=$this->request->query['pagesize'];
+		}
+		if($page==1){
+			$offset = 0;
+		 }else{
+			$offset= $pagesize*($page-1);
+		}
+		$conditions['Job.job_status']=1;
+		$data = $this->Job->find('all', array('conditions'=>$conditions,'order' => 'Job.id ASC'));
+		$total_job = count($data);
+		if($total_job < 1){
+			echo json_encode(array('error_code'=> '1','status'=> '0', 'message'=> "No record found!")); die;
+		}else{			
+			$this->paginate = array('order' => 'Job.id DESC', 'limit' => $pagesize,'offset'=>$offset);
+			$job_data=$this->paginate('Job',$conditions);
+			echo json_encode(array('error_code'=> '0','status'=> '1', 'data'=> $job_data)); die;
+		}
+	}
 	function getSkil() {
 		$this->loadModel('Skill');
 		$conditions = array();

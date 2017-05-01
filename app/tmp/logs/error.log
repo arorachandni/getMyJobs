@@ -38005,3 +38005,1253 @@ Request URL: /getMyJobs/img/admin/logo.png
 Stack Trace:
 #0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-04-23 18:35:17 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/loginbg.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:35:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:35:22 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:35:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:35:40 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:36:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:36:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:45:17 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Job.id' in 'where clause'
+Request URL: /getMyJobs/admin/jobs/job_list
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT `Proposa...', Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT `Proposa...', Array, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1421): DboSource->fetchAll('SELECT `Proposa...', false)
+#4 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1259): DboSource->_fetchHasMany(Object(Job), 'SELECT `Proposa...', Array)
+#5 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1142): DboSource->queryAssociation(Object(Job), Object(Proposal), 'hasMany', 'Proposal', Array, Array, true, Array, 0, Array)
+#6 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Job), Array)
+#7 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#8 C:\xampp\htdocs\getMyJobs\app\Controller\JobsController.php(62): Model->find('all', Array)
+#9 [internal function]: JobsController->admin_job_list()
+#10 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(JobsController), Array)
+#11 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#13 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2017-04-23 18:45:18 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-23 18:45:52 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Job.id' in 'where clause'
+Request URL: /getMyJobs/admin/jobs/job_list
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT `Proposa...', Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT `Proposa...', Array, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1421): DboSource->fetchAll('SELECT `Proposa...', false)
+#4 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1259): DboSource->_fetchHasMany(Object(Job), 'SELECT `Proposa...', Array)
+#5 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1142): DboSource->queryAssociation(Object(Job), Object(Proposal), 'hasMany', 'Proposal', Array, Array, true, Array, 0, Array)
+#6 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Job), Array)
+#7 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#8 C:\xampp\htdocs\getMyJobs\app\Controller\JobsController.php(62): Model->find('all', Array)
+#9 [internal function]: JobsController->admin_job_list()
+#10 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(JobsController), Array)
+#11 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#13 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2017-04-23 18:45:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:33:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/loginbg.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:33:16 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+Exception Attributes: array (
+  'class' => 'Favicon.icoController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/favicon.ico
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:33:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:33:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:33:32 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:48:55 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:51:49 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:51:57 Error: [MissingControllerException] Controller class ProposalsController could not be found.
+Exception Attributes: array (
+  'class' => 'ProposalsController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/admin/proposals/proposal_list/_full:1
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:51:58 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:51:58 Error: [MissingControllerException] Controller class ProposalsController could not be found.
+Exception Attributes: array (
+  'class' => 'ProposalsController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/admin/proposals/proposal_list/_full:1
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:54:33 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:56:44 Error: [MissingControllerException] Controller class ProposalsController could not be found.
+Exception Attributes: array (
+  'class' => 'ProposalsController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/admin/proposals/proposal_list/_full:1
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 09:56:44 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:31:39 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/loginbg.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:31:45 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:31:45 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:31:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:31:56 Error: [MissingActionException] Action JobsController::admin_proposal_list() could not be found.
+Exception Attributes: array (
+  'controller' => 'JobsController',
+  'action' => 'admin_proposal_list',
+)
+Request URL: /getMyJobs/admin/jobs/proposal_list/10
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-30 15:31:57 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:31:57 Error: [MissingActionException] Action JobsController::admin_proposal_list() could not be found.
+Exception Attributes: array (
+  'controller' => 'JobsController',
+  'action' => 'admin_proposal_list',
+)
+Request URL: /getMyJobs/admin/jobs/proposal_list/10
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-30 15:33:23 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:33:27 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Proposal.job_id' in 'where clause'
+Request URL: /getMyJobs/admin/jobs/praposal_list/10
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT `Job`.`i...', Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT `Job`.`i...', Array, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT `Job`.`i...', false)
+#4 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Job), Array)
+#5 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\xampp\htdocs\getMyJobs\app\Controller\JobsController.php(85): Model->find('all', Array)
+#7 [internal function]: JobsController->admin_praposal_list('10')
+#8 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(JobsController), Array)
+#9 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#11 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2017-04-30 15:33:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:33:28 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Proposal.job_id' in 'where clause'
+Request URL: /getMyJobs/admin/jobs/praposal_list/10
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT `Job`.`i...', Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT `Job`.`i...', Array, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT `Job`.`i...', false)
+#4 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Job), Array)
+#5 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\xampp\htdocs\getMyJobs\app\Controller\JobsController.php(85): Model->find('all', Array)
+#7 [internal function]: JobsController->admin_praposal_list('10')
+#8 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(JobsController), Array)
+#9 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#11 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2017-04-30 15:34:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:43:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 15:43:51 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:10:26 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:11:34 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:12:22 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:12:36 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:13:05 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:14:11 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:14:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:14:54 Error: Fatal Error (4): syntax error, unexpected ';' in [C:\xampp\htdocs\getMyJobs\app\View\Jobs\admin_praposal_list.ctp, line 38]
+2017-04-30 16:14:54 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /getMyJobs/admin/jobs/praposal_list/9
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 38, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 38, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 16:14:56 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:15:11 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:16:11 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:16:24 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:17:26 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:17:36 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:19:57 Error: [MissingActionException] Action JobsController::admin_praposal_lisd() could not be found.
+Exception Attributes: array (
+  'controller' => 'JobsController',
+  'action' => 'admin_praposal_lisd',
+)
+Request URL: /getMyJobs/admin/jobs/praposal_lisd
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-30 16:19:58 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:19:58 Error: [MissingActionException] Action JobsController::admin_praposal_lisd() could not be found.
+Exception Attributes: array (
+  'controller' => 'JobsController',
+  'action' => 'admin_praposal_lisd',
+)
+Request URL: /getMyJobs/admin/jobs/praposal_lisd
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-30 16:26:40 Error: [MissingActionException] Action JobsController::admin_praposal_lis() could not be found.
+Exception Attributes: array (
+  'controller' => 'JobsController',
+  'action' => 'admin_praposal_lis',
+)
+Request URL: /getMyJobs/admin/jobs/praposal_lis
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-30 16:26:40 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:26:41 Error: [MissingActionException] Action JobsController::admin_praposal_lis() could not be found.
+Exception Attributes: array (
+  'controller' => 'JobsController',
+  'action' => 'admin_praposal_lis',
+)
+Request URL: /getMyJobs/admin/jobs/praposal_lis
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(JobsController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-04-30 16:26:47 Error: [MissingControllerException] Controller class DController could not be found.
+Exception Attributes: array (
+  'class' => 'DController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/admin/d
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:26:47 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:26:48 Error: [MissingControllerException] Controller class DController could not be found.
+Exception Attributes: array (
+  'class' => 'DController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/admin/d
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:26:56 Error: [MissingControllerException] Controller class AdmiController could not be found.
+Exception Attributes: array (
+  'class' => 'AdmiController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/admi
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:26:57 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/css/cake.generic.css
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 16:26:57 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/cake.power.gif
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:09:04 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:09:06 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\xampp\htdocs\getMyJobs\app\Controller\JobsController.php, line 106]
+2017-04-30 17:09:07 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 106)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 106, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 106, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:09:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:09:08 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\xampp\htdocs\getMyJobs\app\Controller\JobsController.php, line 106]
+2017-04-30 17:09:08 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 106)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 106, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 106, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:10:23 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:17:18 Error: Fatal Error (4): syntax error, unexpected 'as' (T_AS), expecting ';' in [C:\xampp\htdocs\getMyJobs\app\View\Jobs\admin_view_proposal.ctp, line 17]
+2017-04-30 17:17:18 Error: [FatalErrorException] syntax error, unexpected 'as' (T_AS), expecting ';'
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 17)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 17, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 17, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:17:19 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:17:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:18:30 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:36:27 Error: Fatal Error (1): Call to undefined function getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Jobs\admin_view_proposal.ctp, line 17]
+2017-04-30 17:36:27 Error: [FatalErrorException] Call to undefined function getJobQuestions()
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 17)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 17, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 17, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:36:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:36:41 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 204]
+2017-04-30 17:36:42 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 204)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 204, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 204, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:36:42 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:39:10 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 205]
+2017-04-30 17:39:11 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 205)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 205, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 205, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:39:12 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:44:38 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:45:22 Error: Fatal Error (4): syntax error, unexpected '.' in [C:\xampp\htdocs\getMyJobs\app\View\Jobs\admin_view_proposal.ctp, line 20]
+2017-04-30 17:45:23 Error: [FatalErrorException] syntax error, unexpected '.'
+Request URL: /getMyJobs/admin/jobs/view_proposal/8
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 20)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 20, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 20, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-30 17:45:23 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:45:34 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:45:57 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:46:24 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:47:39 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:47:50 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:48:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:48:33 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:49:08 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:49:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-30 17:50:04 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:22:00 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/loginbg.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:22:00 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+Exception Attributes: array (
+  'class' => 'Favicon.icoController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/favicon.ico
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:22:05 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:22:06 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:22:07 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:22:07 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:23:02 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:23:03 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:23:22 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:23:23 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:23:53 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:23:54 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:24:51 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/loginbg.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:24:52 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+Exception Attributes: array (
+  'class' => 'Favicon.icoController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/favicon.ico
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:24:58 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:24:58 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:25:01 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:25:01 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:25:12 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/css/bootstrap/bootstrap.min.css.map
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:26:12 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:26:13 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:26:14 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/css/bootstrap/bootstrap.min.css.map
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:26:15 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:26:15 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:26:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:26:28 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/css/bootstrap/bootstrap.min.css.map
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:27:04 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:27:04 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:27:05 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:27:06 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:27:56 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:27:58 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:27:59 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:27:59 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:28:17 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:28:18 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:28:18 Error: Fatal Error (64): Cannot redeclare MyHelper::getJobQuestions() in [C:\xampp\htdocs\getMyJobs\app\View\Helper\MyHelper.php, line 215]
+2017-05-01 17:28:18 Error: [FatalErrorException] Cannot redeclare MyHelper::getJobQuestions()
+Request URL: /getMyJobs/admin/admins/dashboard/
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\\xampp\\htdocs...', 215, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:28:30 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:28:39 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:28:45 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:28:55 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:31:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:32:10 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:32:25 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:32:30 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:32:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:49:58 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /getMyJobs/users/login
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#2 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2017-05-01 17:50:21 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\xampp\htdocs\getMyJobs\app\Controller\ApisController.php, line 383]
+2017-05-01 17:50:21 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /getMyJobs/apis/getAllJobList
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 383)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 383, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 383, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:51:31 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\xampp\htdocs\getMyJobs\app\Controller\ApisController.php, line 383]
+2017-05-01 17:51:31 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /getMyJobs/apis/getAllJobList
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Error\ErrorHandler.php(204): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 383)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 383, Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 383, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-05-01 17:52:10 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Event.start_at' in 'order clause'
+Request URL: /getMyJobs/apis/getAllJobList
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT `Job`.`i...', Array)
+#2 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT `Job`.`i...', Array, Array)
+#3 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT `Job`.`i...', false)
+#4 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2905): DboSource->read(Object(Job), Array)
+#5 C:\xampp\htdocs\getMyJobs\lib\Cake\Model\Model.php(2877): Model->_readDataSource('all', Array)
+#6 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Component\PaginatorComponent.php(196): Model->find('all', Array)
+#7 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Controller.php(1080): PaginatorComponent->paginate('Job', Array, Array)
+#8 C:\xampp\htdocs\getMyJobs\app\Controller\ApisController.php(389): Controller->paginate('Job', Array)
+#9 [internal function]: ApisController->getAllJobList()
+#10 C:\xampp\htdocs\getMyJobs\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ApisController), Array)
+#11 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 C:\xampp\htdocs\getMyJobs\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ApisController), Object(CakeRequest))
+#13 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2017-05-01 17:58:54 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-05-01 17:58:55 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /getMyJobs/img/admin/logo.png
+Stack Trace:
+#0 C:\xampp\htdocs\getMyJobs\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

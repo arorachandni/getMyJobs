@@ -196,6 +196,32 @@ class MyHelper extends AppHelper {
 				
         return $skillList;
 	}
+	function getJobQuestions($job_id=NULL){
+		$countUser = '';
+		App::import('Model', 'Job');
+		$this->Job = new Job();
+		if(!empty($job_id)) {
+		$conditions['conditions'] = array( "Job.id" => $job_id);
+		$questions_ar = $this->Job->find( "first", $conditions );
+		}
+		$questions=explode("$$$",$questions_ar['Job']['project_questions']);
+		if(count($questions)>0) {
+			return $questions;
+		} else {
+			return array();
+		}
+        
+	}
+	/*function getJobQuestions($job_id=NULL){
+		App::import('Model', 'Job');
+		$this->Job = new Job();
+		pr($job_id); die;
+		if(!empty($job_id)) {
+			$conditions['conditions'] = array( "Job.id" => $job_id);
+			$questions_ar = $this->Job->find( "first", $conditions );
+			$job_title=$questions_ar['Job']['job_title'];
+		}
+	}*/
 	function getCommentsOnMimePost($post_id=NULL){
 		$countUser = '';
 		App::import('Model', 'Comment');

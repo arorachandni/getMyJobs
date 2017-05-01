@@ -23,11 +23,12 @@
 	  <th><?php echo $this->Paginator->sort("category",__("Cetagory")); ?></th>
       <th><?php echo $this->Paginator->sort("typeofproject",__("Project TYpe")); ?></th>
 	  <th><?php echo $this->Paginator->sort("Created",__("Job Date")); ?></th>
+	  <th><?php echo $this->Paginator->sort("Proposals",__("Proposals")); ?></th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
-   <?php if (!empty($job_list)){
+   <?php  if (!empty($job_list)){
 	   $counter = 0;
 		foreach($job_list as $jobData) { 
 			if($counter%2 == 0)
@@ -42,10 +43,12 @@
       <td><?php if($jobData['Job']['paytype']==2) { echo $jobData['Job']['project_budget']; } else { echo "Hourly";  }  ?></td>
 	  <td><?php echo $this->My->getCategoryName($jobData['Job']['category']); ?>>><?php echo $this->My->getSubCategoryName($jobData['Job']['sub_category']); ?></td>
 		<td><?php if($jobData['Job']['typeofproject']==1){echo "On Going";} else if($jobData['Job']['typeofproject']==2) {echo "One Time";} else { echo "Not Sure";} ?></td>
+		
 	  <td><?php  
 		$timestamp=strtotime($jobData['Job']['created']); 
 		echo date('Y-m-d h:i:s A', $timestamp);
 	  ?></td>
+	  <td><?php echo (count($jobData['Proposal']) > 0 ? $this->Html->link(count($jobData['Proposal']),['controller' => 'jobs', 'action' => 'praposal_list','admin' => true, $id]) : 'N/A'); ?></td>
 	  <td><?php 
 	  $id = $jobData['Job']['id'];
 	  $model="Job";
